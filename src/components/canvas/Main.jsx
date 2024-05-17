@@ -17,16 +17,17 @@ const Shape = ({ sides, position, index, shapesLength }) => {
     }
   })
 
-  const { rodsDensity } = useControls('Rods Density', { rodsDensity: { value: 2, min: 1, max: 10, step: 1 } })
-  const { rodsGrowth } = useControls('Rods growth', { rodsGrowth: { value: 1, min: -10, max: 10, step: 0.1 } })
+  const { basesGrowth } = useControls('Shapes', { basesGrowth: { value: 1, min: 1, max: 10, step: 0.1 } })
+  const { rodsDensity } = useControls('Shapes', { rodsDensity: { value: 2, min: 1, max: 10, step: 1 } })
+  const { rodsGrowth } = useControls('Shapes', { rodsGrowth: { value: 1, min: -10, max: 10, step: 0.1 } })
 
   return (
     <mesh ref={ref} position={position}>
-      <coneGeometry attach='geometry' args={[-index + sides, index / sides, sides]} />
+      <coneGeometry attach='geometry' args={[1, index / basesGrowth, sides]} />
       <meshStandardMaterial attach='material' color={color} metalness={0.9} roughness={0.5} />
       {index % rodsDensity === 0 && (
         <>
-          <coneGeometry attach='geometry' args={[index / index, index * rodsGrowth, sides]} />
+          <coneGeometry attach='geometry' args={[1, index * rodsGrowth, sides]} />
           <meshStandardMaterial attach='material' color={color} metalness={0.8} roughness={0.5} />
         </>
       )}
@@ -35,16 +36,16 @@ const Shape = ({ sides, position, index, shapesLength }) => {
 }
 
 const Main = () => {
-  const { basesCount } = useControls('Bases count', { basesCount: { value: 100, min: 1, max: 200, step: 1 } })
-  const { basesGrowth } = useControls('Bases growth', { basesGrowth: { value: 1, min: -10, max: 10, step: 0.1 } })
-  const { curvature } = useControls('Curvature', { curvature: { value: 1, min: -4, max: 4, step: 0.1 } })
-  const { cameraDistance } = useControls('Camera distance', {
+  const { sides } = useControls('Shapes', { sides: { value: 10, min: 3, max: 30, step: 1 } })
+  const { basesCount } = useControls('Shapes', { basesCount: { value: 100, min: 1, max: 200, step: 1 } })
+  const { curvature } = useControls('Shapes', { curvature: { value: 1, min: -4, max: 4, step: 0.1 } })
+  const { cameraDistance } = useControls('Environment', {
     cameraDistance: { value: 30, min: 1, max: 100, step: 1 },
   })
-  const { lightness } = useControls('Lightness', {
+  const { lightness } = useControls('Environment', {
     lightness: { value: 1, min: 0.1, max: 3, step: 0.1 },
   })
-  const shapes = Array.from({ length: basesCount }, (_, i) => i + basesGrowth)
+  const shapes = Array.from({ length: basesCount }, (_, i) => i + 1)
   const cameraPosition = [0, 0, cameraDistance]
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
@@ -53,7 +54,7 @@ const Main = () => {
         <directionalLight position={[-5, 5, 10]} intensity={5 * lightness} />
         <ambientLight position={[0, 0, 10]} intensity={20 * lightness} />
         <OrbitControls />
-        {shapes.map((sides, i) => {
+        {shapes.map((_shape, i) => {
           const angle = (i * Math.PI * 2) / shapes.length
           const radius = Math.sqrt(i)
           return (
