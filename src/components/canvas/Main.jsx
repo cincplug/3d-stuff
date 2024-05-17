@@ -41,14 +41,17 @@ const Main = () => {
   const { cameraDistance } = useControls('Camera distance', {
     cameraDistance: { value: 30, min: 1, max: 100, step: 1 },
   })
+  const { lightness } = useControls('Lightness', {
+    lightness: { value: 1, min: 0.1, max: 3, step: 0.1 },
+  })
   const shapes = Array.from({ length: basesCount }, (_, i) => i + basesGrowth)
   const cameraPosition = [0, 0, cameraDistance]
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Canvas className='size-full' color='black'>
         <PerspectiveCamera makeDefault position={cameraPosition} />
-        <directionalLight position={[-5, 5, 10]} intensity={5} />
-        <ambientLight position={[0, 0, 10]} intensity={20} />
+        <directionalLight position={[-5, 5, 10]} intensity={5 * lightness} />
+        <ambientLight position={[0, 0, 10]} intensity={20 * lightness} />
         <OrbitControls />
         {shapes.map((sides, i) => {
           const angle = (i * Math.PI * 2) / shapes.length
