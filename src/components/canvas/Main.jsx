@@ -17,13 +17,12 @@ const Shape = ({ sides, position, index, shapesLength }) => {
     }
   })
 
-  const { basesGrowth } = useControls('Shapes', { basesGrowth: { value: 1, min: 1, max: 10, step: 0.1 } })
   const { rodsDensity } = useControls('Shapes', { rodsDensity: { value: 2, min: 1, max: 10, step: 1 } })
   const { rodsGrowth } = useControls('Shapes', { rodsGrowth: { value: 1, min: -10, max: 10, step: 0.1 } })
 
   return (
     <mesh ref={ref} position={position}>
-      <coneGeometry attach='geometry' args={[1, index / basesGrowth, sides]} />
+      <coneGeometry attach='geometry' args={[2, 1, sides]} />
       <meshStandardMaterial attach='material' color={color} metalness={0.9} roughness={0.5} />
       {index % rodsDensity === 0 && (
         <>
