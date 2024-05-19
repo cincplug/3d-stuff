@@ -30,7 +30,7 @@ const PeeCurl = () => {
 
           return (
             <group key={index} position={position}>
-              {index > 2 && index < shapes.length - 1 && (
+              {index > 1 && index < shapes.length - 1 && (
                 <mesh position={[0, (growth * height) / 2, 0]}>
                   <coneGeometry attach='geometry' args={[2, 1, sides]} />
                   <meshStandardMaterial attach='material' color={color} metalness={0.9} roughness={0.5} />
