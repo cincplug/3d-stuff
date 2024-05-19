@@ -8,13 +8,13 @@ import { getColorFromIndex } from 'utils'
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
 const PeeCurl = () => {
-  const { sides } = useControls('Shapes', { sides: { value: 10, min: 3, max: 30, step: 1 } })
-  const { count } = useControls('Shapes', { count: { value: 50, min: 20, max: 100, step: 2 } })
-  const { spread } = useControls('Shapes', { spread: { value: 0.7, min: 0.1, max: 1.5, step: 0.1 } })
-  const { curvature } = useControls('Shapes', { curvature: { value: 1, min: -4, max: 4, step: 0.1 } })
-  const { thickness } = useControls('Shapes', { thickness: { value: 1, min: 0.1, max: 2, step: 0.1 } })
-  const { height } = useControls('Shapes', { height: { value: 20, min: 0.1, max: 50, step: 0.1 } })
-  const { growth } = useControls('Shapes', { growth: { value: 1, min: -10, max: 10, step: 0.1 } })
+  const { sides } = useControls('Pee curl', { sides: { value: 10, min: 3, max: 30, step: 1 } })
+  const { count } = useControls('Pee curl', { count: { value: 50, min: 20, max: 100, step: 2 } })
+  const { spread } = useControls('Pee curl', { spread: { value: 0.7, min: 0.1, max: 1.5, step: 0.1 } })
+  const { curvature } = useControls('Pee curl', { curvature: { value: 1, min: -4, max: 4, step: 0.1 } })
+  const { thickness } = useControls('Pee curl', { thickness: { value: 1, min: 0.1, max: 2, step: 0.1 } })
+  const { height } = useControls('Pee curl', { height: { value: 20, min: 0.1, max: 50, step: 0.1 } })
+  const { growth } = useControls('Pee curl', { growth: { value: 1, min: -10, max: 10, step: 0.1 } })
 
   const shapes = Array.from({ length: count * 2 }, (_, index) => index + 1)
   return (

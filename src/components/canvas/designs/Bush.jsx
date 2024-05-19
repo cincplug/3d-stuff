@@ -7,11 +7,11 @@ import { useControls } from 'leva'
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
 const Bush = () => {
-  const { sides } = useControls('Shapes', { sides: { value: 10, min: 3, max: 30, step: 1 } })
-  const { count } = useControls('Shapes', { count: { value: 50, min: 1, max: 200, step: 1 } })
-  const { spread } = useControls('Shapes', { spread: { value: 4, min: -10, max: 10, step: 0.1 } })
-  const { growth } = useControls('Shapes', { growth: { value: 1, min: -10, max: 10, step: 0.1 } })
-  const { thickness } = useControls('Shapes', { thickness: { value: 1, min: -2, max: 3, step: 0.1 } })
+  const { sides } = useControls('Bush', { sides: { value: 17, min: 3, max: 30, step: 1 } })
+  const { count } = useControls('Bush', { count: { value: 39, min: 1, max: 200, step: 1 } })
+  const { spread } = useControls('Bush', { spread: { value: -6.8, min: -10, max: 10, step: 0.1 } })
+  const { growth } = useControls('Bush', { growth: { value: 1, min: 0.7, max: 10, step: 0.1 } })
+  const { thickness } = useControls('Bush', { thickness: { value: -1, min: -2, max: 3, step: 0.1 } })
 
   const shapes = Array.from({ length: count }, (_, i) => i + 1)
 
@@ -27,7 +27,7 @@ const Bush = () => {
           return (
             <mesh key={i} position={position}>
               <cylinderGeometry attach='geometry' args={[width * 2, depth, height, sides]} />
-              <meshStandardMaterial attach='material' color='#336600' metalness={0.9} roughness={3.8} />
+              <meshStandardMaterial attach='material' color='#336600' metalness={0.7} roughness={3.8} />
             </mesh>
           )
         })}
