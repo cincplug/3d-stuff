@@ -3,7 +3,7 @@
 
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
-import components from '@/components/ComponentRegistry'
+import components from '@/components/canvas/ComponentRegistry'
 
 export default function DynamicPage({ params }) {
   const { component } = params
