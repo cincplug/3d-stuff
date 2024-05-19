@@ -6,7 +6,7 @@ import { Canvas } from '@react-three/fiber'
 import { useControls } from 'leva'
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
-const Pinecone = () => {
+const Bush = () => {
   const { sides } = useControls('Shapes', { sides: { value: 10, min: 3, max: 30, step: 1 } })
   const { basesCount } = useControls('Shapes', { basesCount: { value: 100, min: 1, max: 200, step: 1 } })
   const { density } = useControls('Shapes', { density: { value: 2, min: 1, max: 10, step: 1 } })
@@ -27,7 +27,7 @@ const Pinecone = () => {
           ]
           return (
             <group key={i}>
-              <PineconeBase width={width} depth={depth} height={height} position={position} sides={sides} />
+              <BushBase width={width} depth={depth} height={height} position={position} sides={sides} />
             </group>
           )
         })}
@@ -36,7 +36,7 @@ const Pinecone = () => {
   )
 }
 
-const PineconeBase = ({ width, height, depth, position, sides }) => {
+const BushBase = ({ width, height, depth, position, sides }) => {
   return (
     <mesh position={position}>
       <cylinderGeometry attach='geometry' args={[width * 2, depth, height, sides]} />
@@ -45,4 +45,4 @@ const PineconeBase = ({ width, height, depth, position, sides }) => {
   )
 }
 
-export default Pinecone
+export default Bush

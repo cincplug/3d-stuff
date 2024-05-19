@@ -1,4 +1,4 @@
-export const getColorFromIndex = (index, shapesLength, minHex = '#ffff00', maxHex = '#0000ff') => {
+export const getColorFromIndex = (index, shapesLength, minHex = '#675668', maxHex = '#6d434c') => {
   const minRGB = hexToRGB(minHex)
   const maxRGB = hexToRGB(maxHex)
 
@@ -22,4 +22,8 @@ export const hexToRGB = (hex) => {
         b: parseInt(result[3], 16),
       }
     : null
+}
+
+export const pascalToSpace = (text) => {
+  return text.replace(/([A-Z])/g, ' $1')
 }

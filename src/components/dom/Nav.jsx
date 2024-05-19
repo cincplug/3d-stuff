@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import { pascalToSpace } from 'utils'
 import components from '@/components/canvas/ComponentRegistry'
 
 const Nav = () => {
@@ -16,10 +17,10 @@ const Nav = () => {
         zIndex: 1,
       }}
     >
-      <ul style={{ listStyleType: 'none', display: 'flex', gap: '10px' }}>
+      <ul style={{ listStyleType: 'none', display: 'flex', gap: '20px' }}>
         {Object.keys(components).map((component) => (
           <li key={component}>
-            <Link href={`/${component}`}>{component}</Link>
+            <Link href={`/${component}`}>{pascalToSpace(component)}</Link>
           </li>
         ))}
       </ul>

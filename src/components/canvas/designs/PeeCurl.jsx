@@ -21,16 +21,17 @@ const Shape = ({ sides, position, index, shapesLength }) => {
       {index % rodsDensity === 0 && (
         <>
           <coneGeometry attach='geometry' args={[1, index * rodsGrowth, sides]} />
-          <meshStandardMaterial attach='material' color={color} metalness={0.8} roughness={0.5} />
+          <meshStandardMaterial attach='material' color={color} metalness={0.9} roughness={0.7} />
         </>
       )}
     </mesh>
   )
 }
 
-const Main = () => {
+const PeeCurl = () => {
   const { sides } = useControls('Shapes', { sides: { value: 10, min: 3, max: 30, step: 1 } })
   const { basesCount } = useControls('Shapes', { basesCount: { value: 100, min: 1, max: 200, step: 1 } })
+  const { spread } = useControls('Shapes', { spread: { value: 0.7, min: 0.1, max: 1.5, step: 0.1 } })
   const { curvature } = useControls('Shapes', { curvature: { value: 1, min: -4, max: 4, step: 0.1 } })
   const shapes = Array.from({ length: basesCount }, (_, i) => i + 1)
   return (
@@ -39,7 +40,7 @@ const Main = () => {
         <Environment />
         {shapes.map((_shape, i) => {
           const angle = (i * Math.PI * 2) / shapes.length
-          const radius = Math.sqrt(i)
+          const radius = i ** spread
           return (
             <Shape
               key={i}
@@ -55,4 +56,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default PeeCurl
