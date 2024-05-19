@@ -1,17 +1,15 @@
-'use client'
-
 import * as React from 'react'
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import { useControls } from 'leva'
 
 const Environment = () => {
-  const { cameraDistance } = useControls('Environment', {
-    cameraDistance: { value: 30, min: 1, max: 100, step: 1 },
-  })
-  const { lightness } = useControls('Environment', {
+  const { cameraX, cameraY, cameraZ, lightness } = useControls('Environment', {
+    cameraX: { value: 0, min: -100, max: 200, step: 1 },
+    cameraY: { value: 0, min: -100, max: 200, step: 1 },
+    cameraZ: { value: 30, min: 1, max: 100, step: 1 },
     lightness: { value: 15, min: 0.1, max: 30, step: 0.1 },
   })
-  const cameraPosition = [0, 0, cameraDistance]
+  const cameraPosition = [cameraX, cameraY, cameraZ]
 
   return (
     <>
