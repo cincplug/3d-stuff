@@ -27,3 +27,9 @@ export const hexToRGB = (hex) => {
 export const pascalToSpace = (text) => {
   return text.replace(/([A-Z])/g, ' $1')
 }
+
+export const getDefaultValues = (defaultSettings) =>
+  Object.keys(defaultSettings).reduce((acc, key) => {
+    acc[key] = defaultSettings[key].value
+    return acc
+  }, {})

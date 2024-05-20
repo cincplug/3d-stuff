@@ -3,7 +3,7 @@ import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import { useControls } from 'leva'
 
 const Environment = () => {
-  const { cameraX, cameraY, cameraZ, autoRotate, lightness } = useControls('Environment', {
+  const { cameraX, cameraY, cameraZ, autoRotate, lightness } = useControls({
     cameraX: { value: 0, min: -100, max: 200, step: 1 },
     cameraY: { value: 0, min: -100, max: 200, step: 1 },
     cameraZ: { value: 30, min: 1, max: 100, step: 1 },
