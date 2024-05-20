@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import * as React from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useControls } from 'leva'
-import { getColorFromIndex } from 'utils'
+import { getColorFromIndex } from '@/utils'
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
 const PeeCurl = () => {

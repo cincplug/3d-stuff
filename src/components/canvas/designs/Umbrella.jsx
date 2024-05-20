@@ -6,7 +6,7 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { useControls } from 'leva'
 import * as THREE from 'three'
-import { getColorFromIndex } from 'utils'
+import { getColorFromIndex } from '@/utils'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
