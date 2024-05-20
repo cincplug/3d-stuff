@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 import * as React from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useControls } from 'leva'
-import * as THREE from 'three'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
@@ -30,6 +29,13 @@ const Bush = () => {
       spread: 4.3,
       growth: 1.4,
       thickness: 1,
+    },
+    Muffin: {
+      sides: 20,
+      count: 74,
+      spread: 3.5,
+      growth: -0.5,
+      thickness: 1.7,
     },
     'Ice Cream': {
       sides: 8,
