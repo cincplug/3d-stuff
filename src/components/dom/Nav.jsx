@@ -6,29 +6,16 @@ import variations from '@/variations'
 
 const Nav = () => {
   return (
-    <nav
-      style={{
-        padding: '10px',
-        backgroundColor: '#333',
-        color: '#fff',
-        width: 'fit-content',
-        position: 'absolute',
-        zIndex: 1,
-      }}
-    >
-      <ul style={{ listStyleType: 'none', display: 'flex', gap: '20px' }}>
-        {Object.keys(components).map((component) => (
-          <li key={component}>
-            <ul>
-              {Object.keys(variations[component]).map((variation) => (
-                <li key={variation}>
-                  <Link href={`/${component}/${variation}`}>{variation}</Link>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
+    <nav className='absolute z-10 m-3 w-fit'>
+      {Object.keys(components).map((component) => (
+        <ul className='mb-2 list-none rounded-sm bg-[#252731] p-[10px] text-[small]' key={component}>
+          {Object.keys(variations[component]).map((variation) => (
+            <li className='text-[#cdcdcd] hover:text-[#fafafa]' key={variation}>
+              <Link href={`/${component}/${variation}`}>{pascalToSpace(variation)}</Link>
+            </li>
+          ))}
+        </ul>
+      ))}
     </nav>
   )
 }
