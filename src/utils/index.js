@@ -33,3 +33,25 @@ export const getDefaultValues = (defaultSettings) =>
     acc[key] = defaultSettings[key].value
     return acc
   }, {})
+
+export const createControls = (settings, props, defaults) => {
+  const controls = {}
+  settings.forEach((setting) => {
+    const isCountable = ['sides', 'count', 'baseCount'].includes(setting)
+    controls[setting] = {
+      value: props?.[setting] ?? defaults[setting],
+      min: isCountable ? 3 : -100,
+      max: 100,
+      step: isCountable ? 1 : 0.1,
+    }
+  })
+  return controls
+}
+
+export const updateSettings = (settings, props, set) => {
+  const newSettings = {}
+  settings.forEach((setting) => {
+    newSettings[setting] = props[setting]
+  })
+  set(newSettings)
+}
