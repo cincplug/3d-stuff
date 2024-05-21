@@ -6,30 +6,28 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { useControls } from 'leva'
 import * as THREE from 'three'
-import { getColorFromIndex, getDefaultValues } from '@/utils'
-import VariationNav from '../VariationNav'
+import { getColorFromIndex } from '@/utils'
+import variations from '@/variations'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
-const Umbrella = () => {
-  const defaultSettings = {
-    sides: { value: 10, min: 3, max: 30, step: 1 },
-    baseCount: { value: 10, min: 1, max: 20, step: 1 },
-    fold: { value: 1, min: -1, max: 2, step: 0.01 },
-    thickness: { value: 0.5, min: 0.1, max: 2, step: 0.1 },
-    height: { value: 20, min: -40, max: 40, step: 0.1 },
-    growth: { value: 0.9, min: -3, max: 3, step: 0.1 },
-    xScale: { value: 10, min: -3, max: 23, step: 0.1 },
-    yScale: { value: 5, min: -3, max: 23, step: 0.1 },
-  }
+const Umbrella = (props) => {
+  const defaults = variations.Umbrella.Umbrella
+  const levaSettings = useControls({
+    sides: { value: defaults.sides, min: 3, max: 30, step: 1 },
+    baseCount: { value: defaults.baseCount, min: 1, max: 20, step: 1 },
+    fold: { value: defaults.fold, min: -1, max: 2, step: 0.01 },
+    thickness: { value: defaults.thickness, min: 0.1, max: 2, step: 0.1 },
+    height: { value: defaults.height, min: -40, max: 40, step: 0.1 },
+    growth: { value: defaults.growth, min: -3, max: 3, step: 0.1 },
+    xScale: { value: defaults.xScale, min: -3, max: 23, step: 0.1 },
+    yScale: { value: defaults.yScale, min: -3, max: 23, step: 0.1 },
+  })
 
-  const { sides, baseCount, fold, thickness, height, growth, xScale, yScale } = useControls(defaultSettings)
-  const defaultValues = getDefaultValues(defaultSettings)
-  const [, set] = useControls(() => defaultValues)
+  const { sides, baseCount, fold, thickness, height, growth, xScale, yScale } = props || levaSettings
 
   return (
     <>
-      <VariationNav {...{ set, defaultValues, component: 'Umbrella' }} />
       <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
         <Canvas className='size-full' color='black'>
           <ambientLight intensity={0.5} />

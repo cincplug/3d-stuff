@@ -1,5 +1,12 @@
 const variations = {
   Bush: {
+    Bush: {
+      sides: 17,
+      count: 39,
+      spread: 2,
+      growth: 1.5,
+      thickness: -1,
+    },
     Cake: {
       sides: 17,
       count: 39,
@@ -14,7 +21,7 @@ const variations = {
       growth: -0.5,
       thickness: 1.7,
     },
-    'Ice Cream': {
+    IceCream: {
       sides: 8,
       count: 92,
       spread: -0.1,
@@ -23,6 +30,16 @@ const variations = {
     },
   },
   Umbrella: {
+    Umbrella: {
+      sides: 10,
+      baseCount: 10,
+      fold: 1,
+      thickness: 0.5,
+      height: 20,
+      growth: 0.9,
+      xScale: 10,
+      yScale: 5,
+    },
     Spear: {
       sides: 10,
       baseCount: 16,
@@ -65,6 +82,15 @@ const variations = {
     },
   },
   PeeCurl: {
+    PeeCurl: {
+      sides: 10,
+      count: 50,
+      spread: 0.7,
+      curvature: 1,
+      thickness: 1,
+      height: 20,
+      growth: 1,
+    },
     Staircase: {
       sides: 4,
       count: 32,

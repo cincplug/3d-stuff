@@ -1,12 +1,11 @@
-// app/[component]/page.jsx
 'use client'
-
+import React from 'react'
 import { useEffect } from 'react'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import components from '@/components/canvas/ComponentRegistry'
 
-export default function DynamicPage({ params }) {
+const ComponentPage = ({ params }) => {
   const { component } = params
   const Component = components[component]
 
@@ -26,3 +25,5 @@ export default function DynamicPage({ params }) {
     </div>
   )
 }
+
+export default ComponentPage
