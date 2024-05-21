@@ -1,8 +1,20 @@
 import * as React from 'react'
+import { useEffect } from 'react'
 import variations from '@/variations'
 import { pascalToSpace } from '@/utils'
 
 const VariationNav = ({ component, defaultValues, set }) => {
+  const [title, setTitle] = React.useState(component)
+
+  const handleClick = (key) => {
+    set(variations[component][key])
+    setTitle(key)
+  }
+
+  useEffect(() => {
+    document.title = title
+  }, [title])
+
   return (
     <ul
       style={{
@@ -24,7 +36,7 @@ const VariationNav = ({ component, defaultValues, set }) => {
       </li>
       {Object.keys(variations[component]).map((key) => (
         <li key={key}>
-          <button onClick={() => set(variations[component][key])}>{key}</button>
+          <button onClick={() => handleClick(key)}>{key}</button>
         </li>
       ))}
     </ul>
