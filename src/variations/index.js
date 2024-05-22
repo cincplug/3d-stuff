@@ -85,7 +85,7 @@ const variations = {
     PeeCurl: {
       sides: 10,
       count: 50,
-      spread: 0.7,
+      spread: 7,
       curvature: 1,
       thickness: 1,
       height: 20,
@@ -94,7 +94,7 @@ const variations = {
     Staircase: {
       sides: 4,
       count: 32,
-      spread: 0.6,
+      spread: 6,
       curvature: '0.0',
       thickness: 1.3,
       height: 0.1,
@@ -103,7 +103,7 @@ const variations = {
     Amphitheater: {
       sides: 9,
       count: 62,
-      spread: 0.8,
+      spread: 8,
       curvature: 3.5,
       thickness: 0.7,
       height: 5.8,

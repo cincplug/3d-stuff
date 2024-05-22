@@ -31,10 +31,10 @@ const PeeCurl = (props) => {
         <Environment />
         {shapes.map((_, index) => {
           const angle = (index * Math.PI * 2) / shapes.length
-          const radius = index ** levaSettings.spread
+          const radius = index ** (levaSettings.spread / 10)
           const position = [
             radius * Math.cos(angle * levaSettings.curvature),
-            -levaSettings.spread,
+            0,
             radius * Math.sin(angle * levaSettings.curvature),
           ]
           const color = getColorFromIndex(index, shapes.length)
