@@ -56,10 +56,10 @@ const variations = {
       baseCount: 3,
       fold: 0.74,
       thickness: 1.2,
-      height: -8.4,
+      height: 8.9,
       growth: -0.1,
       xScale: 1.1,
-      yScale: -3,
+      yScale: 3,
     },
     Plunger: {
       sides: 10,

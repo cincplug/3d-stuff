@@ -7,7 +7,6 @@ import { OrbitControls } from '@react-three/drei'
 import { useControls } from 'leva'
 import * as THREE from 'three'
 import { getColorFromIndex, createControls, updateSettings } from '@/utils'
-import variations from '@/variations'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 

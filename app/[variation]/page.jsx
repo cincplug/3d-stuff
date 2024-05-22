@@ -16,8 +16,8 @@ const VariationPage = () => {
   const Component = components[component]
 
   useEffect(() => {
-    document.title = `${component} - ${variation}` || 'Industrial Design'
-  }, [variation, component])
+    document.title = `${variation} ::: Industrial Design`
+  }, [variation])
 
   if (!Component) {
     notFound()

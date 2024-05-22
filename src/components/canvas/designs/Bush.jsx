@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 import React, { useEffect, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useControls } from 'leva'
-import variations from '@/variations'
 import { createControls, updateSettings } from '@/utils'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
