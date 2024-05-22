@@ -28,7 +28,8 @@ const Umbrella = (props) => {
     }
   }, [props, set, settings])
 
-  const shapes = Array.from({ length: levaSettings.baseCount }, (_, index) => index + 1)
+  const { sides, baseCount, fold, thickness, height, growth, xScale, yScale } = levaSettings
+  const shapes = Array.from({ length: baseCount }, (_, index) => index + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
@@ -37,12 +38,9 @@ const Umbrella = (props) => {
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Environment />
         <OrbitControls />
-        <group position={[0, levaSettings.height / 2, 0]}>
-          <mesh position={[0, -levaSettings.height / 2, 0]}>
-            <cylinderGeometry
-              attach='geometry'
-              args={[levaSettings.thickness, levaSettings.thickness, levaSettings.height, levaSettings.sides, 1]}
-            />
+        <group position={[0, height / 2, 0]}>
+          <mesh position={[0, -height / 2, 0]}>
+            <cylinderGeometry attach='geometry' args={[thickness, thickness, height, sides, 1]} />
             <meshPhysicalMaterial
               attach='material'
               color='gray'
@@ -53,15 +51,12 @@ const Umbrella = (props) => {
             />
           </mesh>
           {shapes.map((_, index) => {
-            const scale = 1 - (index / shapes.length) * levaSettings.growth
-            const yOffset = levaSettings.height * (1 - levaSettings.fold) * (index / shapes.length)
+            const scale = 1 - (index / shapes.length) * growth
+            const yOffset = height * (1 - fold) * (index / shapes.length)
             const color = getColorFromIndex(index, shapes.length)
             return (
               <mesh key={index} position={[0, yOffset, 0]} scale={[scale, 1, scale]}>
-                <coneGeometry
-                  attach='geometry'
-                  args={[levaSettings.xScale, levaSettings.yScale, levaSettings.sides, 1, true]}
-                />
+                <coneGeometry attach='geometry' args={[xScale, yScale, sides, 1, true]} />
                 <meshPhysicalMaterial
                   attach='material'
                   color={color}

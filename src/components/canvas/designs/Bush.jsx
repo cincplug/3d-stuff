@@ -23,24 +23,21 @@ const Bush = (props) => {
     }
   }, [props, set, settings])
 
-  const shapes = Array.from({ length: levaSettings.count }, (_, i) => i + 1)
+  const { sides, count, spread, growth, thickness } = levaSettings
+  const shapes = Array.from({ length: count }, (_, i) => i + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Canvas className='size-full' color='black'>
         <Environment />
         {shapes.map((_shape, i) => {
-          const height = Math.sqrt(i + 1) * levaSettings.growth
-          const width = levaSettings.thickness - i / shapes.length
+          const height = Math.sqrt(i + 1) * growth
+          const width = thickness - i / shapes.length
           const depth = i / shapes.length
-          const position = [
-            Math.sin(i) * levaSettings.spread,
-            (i * height) / 2 / shapes.length - height / 2,
-            Math.cos(i) * levaSettings.spread,
-          ]
+          const position = [Math.sin(i) * spread, (i * height) / 2 / shapes.length - height / 2, Math.cos(i) * spread]
           return (
             <mesh key={i} position={position}>
-              <cylinderGeometry attach='geometry' args={[width * 2, depth, height, levaSettings.sides]} />
+              <cylinderGeometry attach='geometry' args={[width * 2, depth, height, sides]} />
               <meshPhysicalMaterial attach='material' color='#336600' metalness={0.7} roughness={0.8} />
             </mesh>
           )

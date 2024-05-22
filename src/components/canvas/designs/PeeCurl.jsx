@@ -23,7 +23,8 @@ const PeeCurl = (props) => {
     }
   }, [props, set, settings])
 
-  const shapes = Array.from({ length: levaSettings.count * 2 }, (_, index) => index + 1)
+  const { sides, count, spread, curvature, thickness, height, growth } = levaSettings
+  const shapes = Array.from({ length: count * 2 }, (_, index) => index + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
@@ -31,20 +32,16 @@ const PeeCurl = (props) => {
         <Environment />
         {shapes.map((_, index) => {
           const angle = (index * Math.PI * 2) / shapes.length
-          const radius = index ** (levaSettings.spread / 10)
-          const position = [
-            radius * Math.cos(angle * levaSettings.curvature),
-            0,
-            radius * Math.sin(angle * levaSettings.curvature),
-          ]
+          const radius = index ** (spread / 10)
+          const position = [radius * Math.cos(angle * curvature), 0, radius * Math.sin(angle * curvature)]
           const color = getColorFromIndex(index, shapes.length)
-          const rodHeight = index * levaSettings.growth
+          const rodHeight = index * growth
 
           return (
             <group key={index} position={position}>
               {index > 1 && index < shapes.length - 1 && (
-                <mesh position={[0, (levaSettings.growth * levaSettings.height) / 2, 0]}>
-                  <coneGeometry attach='geometry' args={[2, 1, levaSettings.sides]} />
+                <mesh position={[0, (growth * height) / 2, 0]}>
+                  <coneGeometry attach='geometry' args={[2, 1, sides]} />
                   <meshStandardMaterial attach='material' color={color} metalness={0.9} roughness={0.5} />
                 </mesh>
               )}
@@ -52,12 +49,7 @@ const PeeCurl = (props) => {
                 <mesh position={[0, rodHeight / 2, 0]}>
                   <cylinderGeometry
                     attach='geometry'
-                    args={[
-                      levaSettings.thickness,
-                      levaSettings.thickness,
-                      rodHeight + levaSettings.growth * levaSettings.height,
-                      levaSettings.sides,
-                    ]}
+                    args={[thickness, thickness, rodHeight + growth * height, sides]}
                   />
                   <meshStandardMaterial attach='material' color={color} metalness={0.9} roughness={0.7} />
                 </mesh>
