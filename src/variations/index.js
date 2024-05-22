@@ -33,7 +33,7 @@ const variations = {
   Umbrella: {
     Umbrella: {
       sides: 10,
-      baseCount: 10,
+      count: 10,
       fold: 1,
       thickness: 0.5,
       height: 20,
@@ -43,7 +43,7 @@ const variations = {
     },
     Spear: {
       sides: 10,
-      baseCount: 16,
+      count: 16,
       fold: 1.52,
       thickness: 0.3,
       height: 20,
@@ -51,9 +51,20 @@ const variations = {
       xScale: 0.9,
       yScale: 5,
     },
+    SpearChart: {
+      sides: 10,
+      count: 16,
+      fold: 1.52,
+      thickness: 0.3,
+      height: 20,
+      growth: 0.5,
+      xScale: 0.9,
+      yScale: 5,
+      chart: { props: ['growth', 'sides'], data: [5, 8, 3, 11, 20, 2, 3, 10, 4] },
+    },
     Pencil: {
       sides: 8,
-      baseCount: 3,
+      count: 3,
       fold: 0.74,
       thickness: 1.2,
       height: 8.9,
@@ -63,7 +74,7 @@ const variations = {
     },
     Plunger: {
       sides: 10,
-      baseCount: 16,
+      count: 16,
       fold: 1.52,
       thickness: 0.4,
       height: -8.6,
@@ -73,7 +84,7 @@ const variations = {
     },
     Rocket: {
       sides: 16,
-      baseCount: 4,
+      count: 4,
       fold: 1.35,
       thickness: 0.8,
       height: 12.6,
@@ -110,7 +121,7 @@ const variations = {
       thickness: 0.7,
       height: 5.8,
       growth: 0.1,
-      cameraY: 7,
+      cameraY: 17,
     },
   },
 }
