@@ -6,6 +6,7 @@ const variations = {
       spread: 2,
       growth: 1.5,
       thickness: -1,
+      cameraY: 20,
     },
     Cake: {
       sides: 17,
@@ -99,6 +100,7 @@ const variations = {
       thickness: 1.3,
       height: 0.1,
       growth: 0.4,
+      cameraZ: 0.7,
     },
     Amphitheater: {
       sides: 9,
@@ -108,6 +110,7 @@ const variations = {
       thickness: 0.7,
       height: 5.8,
       growth: 0.1,
+      cameraY: 7,
     },
   },
 }
