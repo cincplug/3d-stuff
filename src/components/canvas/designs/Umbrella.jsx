@@ -12,13 +12,11 @@ import variations from '@/variations'
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
 const Umbrella = (props) => {
-  const defaults = variations.Umbrella.Umbrella
-
   const settings = useMemo(
     () => ['sides', 'baseCount', 'fold', 'thickness', 'height', 'growth', 'xScale', 'yScale'],
     [],
   )
-  const controls = createControls(settings, props, defaults)
+  const controls = createControls(settings, props)
 
   const [levaSettings, set] = useControls(() => controls)
 

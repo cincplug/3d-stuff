@@ -10,10 +10,8 @@ import { getColorFromIndex, createControls, updateSettings } from '@/utils'
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
 const PeeCurl = (props) => {
-  const defaults = variations.PeeCurl.PeeCurl
-
   const settings = useMemo(() => ['sides', 'count', 'spread', 'curvature', 'thickness', 'height', 'growth'], [])
-  const controls = createControls(settings, props, defaults)
+  const controls = createControls(settings, props)
 
   const [levaSettings, set] = useControls(() => controls)
 

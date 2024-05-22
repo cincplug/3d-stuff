@@ -10,10 +10,8 @@ import { createControls, updateSettings } from '@/utils'
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
 const Bush = (props) => {
-  const defaults = variations.Bush.Bush
-
   const settings = useMemo(() => ['sides', 'count', 'spread', 'growth', 'thickness'], [])
-  const controls = createControls(settings, props, defaults)
+  const controls = createControls(settings, props)
 
   const [levaSettings, set] = useControls(() => controls)
 
