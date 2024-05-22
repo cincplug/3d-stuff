@@ -11,7 +11,7 @@ const Nav = () => {
         <ul className='mb-2 list-none rounded-sm bg-[#252731] p-[10px] text-[small]' key={component}>
           {Object.keys(variations[component]).map((variation) => (
             <li className='text-[#cdcdcd] hover:text-[#fafafa]' key={variation}>
-              <Link href={`/${component}/${variation}`}>{pascalToSpace(variation)}</Link>
+              <Link href={`/${variation}`}>{pascalToSpace(variation)}</Link>
             </li>
           ))}
         </ul>

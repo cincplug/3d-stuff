@@ -8,10 +8,12 @@ import { useParams } from 'next/navigation'
 
 const VariationPage = () => {
   const params = useParams()
-  const { component, variation } = params
+  const { variation } = params
+
+  const [component, variationProps] =
+    Object.entries(variations).find(([, vars]) => vars.hasOwnProperty(variation)) || []
 
   const Component = components[component]
-  const variationProps = variations[component]?.[variation] || {}
 
   useEffect(() => {
     document.title = `${component} - ${variation}` || 'Industrial Design'
@@ -24,7 +26,7 @@ const VariationPage = () => {
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Suspense fallback={null}>
-        <Component route='/blob' scale={0.6} position={[0, 0, 0]} {...variationProps} />
+        <Component route='/blob' scale={0.6} position={[0, 0, 0]} {...variationProps[variation]} />
       </Suspense>
     </div>
   )
