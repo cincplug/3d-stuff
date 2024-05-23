@@ -2,21 +2,27 @@ export const createControls = (props) => {
   const chartDefaults = {
     items: 1,
     modifier: 10,
-    modifierProp: 'height',
-    modifierOperation: '*',
+    impacts: 'height',
+    operation: '*',
   }
-  const controls = {}
+
+  const impactss = Object.keys(props)
+  const operations = ['+', '-', '*', '/', '**', 'pow', 'sqrt', 'sin', 'cos', 'tan', 'atan']
+
+  const controls = { ...chartDefaults, ...props }
+
   Object.keys(props).forEach((setting) => {
     const isCountable = ['sides', 'bases'].includes(setting)
     controls[setting] = {
-      value: props?.[setting],
+      value: props[setting],
       min: isCountable ? 3 : -100,
       max: 100,
       step: isCountable ? 1 : 0.1,
     }
-    if (setting === 'chart') {
-      controls[setting].rows = true
-    }
   })
-  return { ...controls, ...chartDefaults }
+
+  controls.impacts = { value: impactss }
+  controls.operation = { value: operations }
+
+  return controls
 }
