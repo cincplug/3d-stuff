@@ -22,7 +22,7 @@ const Umbrella = (props) => {
 
   const { lightness, cameraX, cameraY, cameraZ, chart } = settings
   const series = chart ? chart.data : [1]
-  const shapes = Array.from({ length: props.count }, (_, index) => index + 1)
+  const shapes = Array.from({ length: props.bases }, (_, index) => index + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>

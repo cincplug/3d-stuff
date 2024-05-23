@@ -37,7 +37,7 @@ export const getDefaultValues = (defaultSettings) =>
 export const createControls = (props) => {
   const controls = {}
   Object.keys(props).forEach((setting) => {
-    const isCountable = ['sides', 'count'].includes(setting)
+    const isCountable = ['sides', 'bases'].includes(setting)
     controls[setting] = {
       value: props?.[setting],
       min: isCountable ? 3 : -100,

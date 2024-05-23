@@ -19,8 +19,8 @@ const Bush = (props) => {
     })
   }
 
-  const { lightness, cameraX, cameraY, cameraZ, sides, count, spread, growth, thickness } = settings
-  const shapes = Array.from({ length: count }, (_, i) => i + 1)
+  const { lightness, cameraX, cameraY, cameraZ, sides, bases, spread, growth, thickness } = settings
+  const shapes = Array.from({ length: bases }, (_, i) => i + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>

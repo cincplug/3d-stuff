@@ -2,7 +2,7 @@ const variations = {
   Bush: {
     Bush: {
       sides: 17,
-      count: 39,
+      bases: 39,
       spread: 2,
       growth: 1.5,
       thickness: -1,
@@ -10,21 +10,21 @@ const variations = {
     },
     Cake: {
       sides: 17,
-      count: 39,
+      bases: 39,
       spread: 4.3,
       growth: 1.4,
       thickness: 1,
     },
     Muffin: {
       sides: 20,
-      count: 74,
+      bases: 74,
       spread: 3.5,
       growth: -0.5,
       thickness: 1.7,
     },
     IceCream: {
       sides: 8,
-      count: 92,
+      bases: 92,
       spread: -0.1,
       growth: 1.9,
       thickness: 1.5,
@@ -33,7 +33,7 @@ const variations = {
   Umbrella: {
     Umbrella: {
       sides: 10,
-      count: 10,
+      bases: 10,
       fold: 1,
       thickness: 0.5,
       height: 20,
@@ -43,7 +43,7 @@ const variations = {
     },
     Spear: {
       sides: 10,
-      count: 16,
+      bases: 16,
       fold: 1.52,
       thickness: 0.3,
       height: 20,
@@ -53,7 +53,7 @@ const variations = {
     },
     SpearChart: {
       sides: 10,
-      count: 16,
+      bases: 16,
       fold: 1.52,
       thickness: 0.3,
       height: 20,
@@ -64,7 +64,7 @@ const variations = {
     },
     Pencil: {
       sides: 8,
-      count: 3,
+      bases: 3,
       fold: 0.74,
       thickness: 1.2,
       height: 8.9,
@@ -74,7 +74,7 @@ const variations = {
     },
     Plunger: {
       sides: 10,
-      count: 16,
+      bases: 16,
       fold: 1.52,
       thickness: 0.4,
       height: -8.6,
@@ -84,7 +84,7 @@ const variations = {
     },
     Rocket: {
       sides: 16,
-      count: 4,
+      bases: 4,
       fold: 1.35,
       thickness: 0.8,
       height: 12.6,
@@ -96,7 +96,7 @@ const variations = {
   PeeCurl: {
     PeeCurl: {
       sides: 10,
-      count: 50,
+      bases: 50,
       spread: 7,
       curvature: 1,
       thickness: 1,
@@ -105,7 +105,7 @@ const variations = {
     },
     Staircase: {
       sides: 4,
-      count: 32,
+      bases: 32,
       spread: 6,
       curvature: '0.0',
       thickness: 1.3,
@@ -115,7 +115,7 @@ const variations = {
     },
     Amphitheater: {
       sides: 9,
-      count: 62,
+      bases: 62,
       spread: 8,
       curvature: 3.5,
       thickness: 0.7,

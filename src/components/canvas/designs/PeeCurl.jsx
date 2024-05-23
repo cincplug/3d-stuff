@@ -19,8 +19,8 @@ const PeeCurl = (props) => {
     })
   }
 
-  const { lightness, cameraX, cameraY, cameraZ, sides, count, spread, curvature, thickness, height, growth } = settings
-  const shapes = Array.from({ length: count * 2 }, (_, index) => index + 1)
+  const { lightness, cameraX, cameraY, cameraZ, sides, bases, spread, curvature, thickness, height, growth } = settings
+  const shapes = Array.from({ length: bases * 2 }, (_, index) => index + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
