@@ -6,9 +6,9 @@ import variations from '@/variations'
 
 const Nav = () => {
   return (
-    <nav className='absolute z-10 m-3 w-fit'>
+    <nav className='absolute left-2 top-2 z-10 w-fit'>
       {Object.keys(components).map((component) => (
-        <ul className='mb-2 list-none rounded-sm bg-[#252731] p-[10px] text-[small]' key={component}>
+        <ul className='mb-2 list-none rounded-sm bg-slate-800 p-2 text-sm text-slate-50' key={component}>
           {Object.keys(variations[component]).map((variation) => (
             <li className='text-[#cdcdcd] hover:text-[#fafafa]' key={variation}>
               <Link href={`/${variation}`}>{pascalToSpace(variation)}</Link>

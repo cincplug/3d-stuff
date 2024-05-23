@@ -1,32 +1,31 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import React, { useEffect, useMemo } from 'react'
+import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { useControls } from 'leva'
-import { createControls, updateSettings } from '@/utils'
+import Controls from '@/components/dom/Controls'
+import { createControls } from '@/utils'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
 const Bush = (props) => {
-  const settings = useMemo(() => ['sides', 'count', 'spread', 'growth', 'thickness'], [])
-  const controls = createControls(settings, props)
+  const controls = createControls(props)
 
-  const [levaSettings, set] = useControls(() => controls)
+  const [settings, setSettings] = useState(props)
 
-  useEffect(() => {
-    if (props) {
-      updateSettings(settings, props, set)
-    }
-  }, [props, set, settings])
+  const handleInputChange = (event) => {
+    setSettings((prevSettings) => {
+      return { ...prevSettings, [event.target.id]: event.target.value }
+    })
+  }
 
-  const { sides, count, spread, growth, thickness } = levaSettings
+  const { lightness, cameraX, cameraY, cameraZ, sides, count, spread, growth, thickness } = settings
   const shapes = Array.from({ length: count }, (_, i) => i + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Canvas className='size-full' color='black'>
-        <Environment />
+        <Environment {...{ lightness, cameraX, cameraY, cameraZ }} />
         {shapes.map((_shape, i) => {
           const height = Math.sqrt(i + 1) * growth
           const width = thickness - i / shapes.length
@@ -40,6 +39,7 @@ const Bush = (props) => {
           )
         })}
       </Canvas>
+      <Controls {...{ settings, controls, handleInputChange }} />
     </div>
   )
 }

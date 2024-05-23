@@ -9,7 +9,12 @@ import { useParams } from 'next/navigation'
 const VariationPage = () => {
   const params = useParams()
   const { variation } = params
-
+  const defaults = {
+    cameraX: 0,
+    cameraY: 0,
+    cameraZ: 30,
+    lightness: 15,
+  }
   const [component, variationProps] =
     Object.entries(variations).find(([, vars]) => vars.hasOwnProperty(variation)) || []
 
@@ -26,7 +31,7 @@ const VariationPage = () => {
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Suspense fallback={null}>
-        <Component route='/blob' scale={0.6} position={[0, 0, 0]} {...variationProps[variation]} />
+        <Component {...{ ...defaults, ...variationProps[variation] }} />
       </Suspense>
     </div>
   )

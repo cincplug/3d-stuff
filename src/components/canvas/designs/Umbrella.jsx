@@ -1,40 +1,39 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import React, { useEffect, useMemo } from 'react'
+import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import { useControls } from 'leva'
 import * as THREE from 'three'
-import { getColorFromIndex, createControls, updateSettings } from '@/utils'
+import Controls from '@/components/dom/Controls'
+import { getColorFromIndex, createControls } from '@/utils'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
 const Umbrella = (props) => {
-  const settings = useMemo(() => ['sides', 'count', 'fold', 'thickness', 'height', 'growth', 'xScale', 'yScale'], [])
-  const controls = createControls(settings, props)
+  const controls = createControls(props)
 
-  const [levaSettings, set] = useControls(() => controls)
+  const [settings, setSettings] = useState(props)
 
-  useEffect(() => {
-    if (props) {
-      updateSettings(settings, props, set)
-    }
-  }, [props, set, settings])
+  const handleInputChange = (event) => {
+    setSettings((prevSettings) => {
+      return { ...prevSettings, [event.target.id]: event.target.value }
+    })
+  }
 
-  const chart = props.chart
+  const { lightness, cameraX, cameraY, cameraZ, chart } = settings
   const series = chart ? chart.data : [1]
-  const shapes = Array.from({ length: levaSettings.count }, (_, index) => index + 1)
+  const shapes = Array.from({ length: props.count }, (_, index) => index + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Canvas className='size-full' color='black'>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        <Environment />
+        <Environment {...{ lightness, cameraX, cameraY, cameraZ }} />
         <OrbitControls />
         {series.map((item, seriesIndex) => {
-          let modifiedProps = { ...levaSettings }
+          let modifiedProps = { ...settings }
           if (chart) {
             chart.props.forEach((prop) => {
               let affectedProp = settings.find((p) => p === prop)
@@ -77,6 +76,7 @@ const Umbrella = (props) => {
           )
         })}
       </Canvas>
+      <Controls {...{ settings, controls, handleInputChange }} />
     </div>
   )
 }
