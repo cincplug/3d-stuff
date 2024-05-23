@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
@@ -12,12 +12,11 @@ const Environment = dynamic(() => import('@/components/canvas/Environment'), { s
 
 const Umbrella = (props) => {
   const controls = createControls(props)
-
   const [settings, setSettings] = useState(props)
 
   const handleInputChange = (event) => {
     setSettings((prevSettings) => {
-      return { ...prevSettings, [event.target.id]: event.target.value }
+      return { ...prevSettings, [event.target.id]: parseFloat(event.target.value) }
     })
   }
 
@@ -30,14 +29,15 @@ const Umbrella = (props) => {
       <Canvas className='size-full' color='black'>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        <Environment {...{ lightness, cameraX, cameraY, cameraZ }} />
+        <Environment lightness={lightness} cameraX={cameraX} cameraY={cameraY} cameraZ={cameraZ} />
         <OrbitControls />
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (chart) {
             chart.props.forEach((prop) => {
-              let affectedProp = settings.find((p) => p === prop)
-              modifiedProps[affectedProp] *= item
+              if (typeof settings[prop] === 'number') {
+                modifiedProps[prop] = settings[prop] * item
+              }
             })
           }
           const { sides, fold, thickness, height, growth, xScale, yScale } = modifiedProps
@@ -76,7 +76,7 @@ const Umbrella = (props) => {
           )
         })}
       </Canvas>
-      <Controls {...{ settings, controls, handleInputChange }} />
+      <Controls settings={settings} controls={controls} handleInputChange={handleInputChange} />
     </div>
   )
 }
