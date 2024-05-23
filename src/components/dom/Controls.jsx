@@ -28,13 +28,13 @@ const Controls = ({ controls, handleInputChange }) => {
   }
 
   return (
-    <aside className='absolute right-2 top-2 grid w-60 grid-cols-12 gap-2 bg-slate-800 p-2 text-sm text-slate-50'>
+    <aside className='absolute right-2 top-2 grid w-60 grid-cols-12 gap-2 bg-slate-700 p-2 text-sm text-slate-300'>
       {Object.keys(controls).map((control, controlIndex) => {
         const { min, max, step, value } = controls[control]
         const displayValue = typeof value === 'number' ? value : JSON.stringify(value)
         const uiElement = Array.isArray(value) ? (
           <select
-            className='col-span-6 text-black'
+            className='col-span-6 bg-slate-900 text-slate-300 hover:bg-black'
             id={control}
             value={selectedValues[control]}
             onChange={handleSelectChange}

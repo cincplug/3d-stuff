@@ -23,7 +23,6 @@ const Umbrella = (props) => {
 
   const { lightness, cameraX, cameraY, cameraZ, chart } = settings
   const series = chart ? chart.data : [1]
-  const shapes = Array.from({ length: props.bases }, (_, index) => index + 1)
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
@@ -41,7 +40,8 @@ const Umbrella = (props) => {
               }
             })
           }
-          const { sides, fold, thickness, height, growth, xScale, yScale } = modifiedProps
+          const { sides, bases, fold, thickness, height, growth, xScale, yScale } = modifiedProps
+          const shapes = Array.from({ length: bases }, (_, index) => index + 1)
           return (
             <group key={seriesIndex} position={[seriesIndex, height / 2, 0]}>
               <mesh position={[0, -height / 2, 0]}>
