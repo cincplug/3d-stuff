@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { pascalToSpace } from '@/utils'
+import { pascalToSpace } from '@/helpers/utils'
 import components from '@/components/canvas/ComponentRegistry'
 import variations from '@/variations'
 

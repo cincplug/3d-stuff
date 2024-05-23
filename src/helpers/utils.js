@@ -27,34 +27,3 @@ export const hexToRGB = (hex) => {
 export const pascalToSpace = (text) => {
   return text.replace(/([A-Z])/g, ' $1')
 }
-
-export const getDefaultValues = (defaultSettings) =>
-  Object.keys(defaultSettings).reduce((acc, key) => {
-    acc[key] = defaultSettings[key].value
-    return acc
-  }, {})
-
-export const createControls = (props) => {
-  const controls = {}
-  Object.keys(props).forEach((setting) => {
-    const isCountable = ['sides', 'bases'].includes(setting)
-    controls[setting] = {
-      value: props?.[setting],
-      min: isCountable ? 3 : -100,
-      max: 100,
-      step: isCountable ? 1 : 0.1,
-    }
-    if (setting === 'chart') {
-      controls[setting].rows = true
-    }
-  })
-  return controls
-}
-
-export const updateSettings = (settings, props, set) => {
-  const newSettings = {}
-  settings.forEach((setting) => {
-    newSettings[setting] = props[setting]
-  })
-  set(newSettings)
-}

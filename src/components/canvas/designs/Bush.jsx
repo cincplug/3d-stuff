@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import Controls from '@/components/dom/Controls'
-import { createControls } from '@/utils'
+import { createControls } from '@/helpers/createControls'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
