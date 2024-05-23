@@ -76,7 +76,7 @@ const Umbrella = (props) => {
           )
         })}
       </Canvas>
-      <Controls settings={settings} controls={controls} handleInputChange={handleInputChange} />
+      <Controls {...{ controls, handleInputChange }} />
     </div>
   )
 }

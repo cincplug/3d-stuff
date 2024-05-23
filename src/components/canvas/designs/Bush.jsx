@@ -39,7 +39,7 @@ const Bush = (props) => {
           )
         })}
       </Canvas>
-      <Controls {...{ settings, controls, handleInputChange }} />
+      <Controls {...{ controls, handleInputChange }} />
     </div>
   )
 }

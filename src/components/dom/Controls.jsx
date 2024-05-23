@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Controls = ({ controls, settings, handleInputChange }) => {
+const Controls = ({ controls, handleInputChange }) => {
   return (
     <aside className='absolute right-2 top-2 grid w-60 grid-cols-12 gap-2 bg-slate-800 p-2 text-sm text-slate-50'>
       {Object.keys(controls).map((control, controlIndex) => {
