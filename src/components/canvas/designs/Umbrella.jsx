@@ -1,7 +1,5 @@
-'use client'
-
 import dynamic from 'next/dynamic'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
@@ -16,13 +14,14 @@ const Umbrella = (props) => {
   const [settings, setSettings] = useState(props)
 
   const handleInputChange = (event) => {
+    const { id, value } = event.target
     setSettings((prevSettings) => {
-      return { ...prevSettings, [event.target.id]: parseFloat(event.target.value) }
+      return { ...prevSettings, [id]: id === 'chart' ? value : parseFloat(value) }
     })
   }
 
-  const { lightness, cameraX, cameraY, cameraZ, chart } = settings
-  const series = chart ? chart.data : [1]
+  const { lightness, cameraX, cameraY, cameraZ, chart, modifier, impacts } = settings
+  const series = chart ? chart.split(', ').map(Number) : [1]
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
@@ -34,16 +33,12 @@ const Umbrella = (props) => {
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (chart) {
-            chart.props.forEach((prop) => {
-              if (typeof settings[prop] === 'number') {
-                modifiedProps[prop] = settings[prop] * item
-              }
-            })
+            modifiedProps[impacts] = settings[impacts] * item * modifier
           }
           const { sides, bases, fold, thickness, height, growth, xScale, yScale } = modifiedProps
           const shapes = Array.from({ length: bases }, (_, index) => index + 1)
           return (
-            <group key={seriesIndex} position={[seriesIndex, height / 2, 0]}>
+            <group key={seriesIndex} position={[seriesIndex * modifier, height / 2, 0]}>
               <mesh position={[0, -height / 2, 0]}>
                 <cylinderGeometry attach='geometry' args={[thickness, thickness, height, sides, 1]} />
                 <meshPhysicalMaterial
