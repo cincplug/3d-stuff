@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 
-const Controls = ({ controls, handleInputChange }) => {
+const Controls = ({ controls, handleInputChange, currentSettings }) => {
   const [selectedValues, setSelectedValues] = useState(() => {
     const initialValues = {}
     Object.keys(controls).forEach((control) => {
-      initialValues[control] = controls[control].value
+      initialValues[control] = Array.isArray(controls[control].value)
+        ? currentSettings[control]
+        : controls[control].value
     })
     return initialValues
   })
@@ -40,20 +42,20 @@ const Controls = ({ controls, handleInputChange }) => {
     <aside className='absolute right-2 top-2 grid w-60 grid-cols-12 gap-2 bg-slate-700 p-2 text-sm text-slate-300'>
       {Object.keys(controls).map((control, controlIndex) => {
         const { min, max, step } = controls[control]
-        const displayValue = selectedValues[control] // use selectedValues to display the current value
+        const displayValue = selectedValues[control]
         const uiElement =
           control === 'chart' ? (
             <textarea
               className='col-span-6 bg-slate-900 text-slate-300 hover:bg-black'
               id={control}
-              value={selectedValues[control]}
+              value={displayValue}
               onChange={handleTextChange}
             />
           ) : Array.isArray(controls[control].value) ? (
             <select
               className='col-span-6 bg-slate-900 text-slate-300 hover:bg-black'
               id={control}
-              value={selectedValues[control]}
+              value={displayValue}
               onChange={handleSelectChange}
             >
               {controls[control].value.map((option) => (
@@ -71,7 +73,7 @@ const Controls = ({ controls, handleInputChange }) => {
                 min={min}
                 max={max}
                 step={step}
-                value={selectedValues[control]}
+                value={displayValue}
                 onChange={handleRangeChange}
               />
               <span className='col-span-2'>{displayValue}</span>

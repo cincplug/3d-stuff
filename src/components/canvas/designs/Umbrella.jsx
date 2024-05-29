@@ -16,11 +16,11 @@ const Umbrella = (props) => {
   const handleInputChange = (event) => {
     const { id, value } = event.target
     setSettings((prevSettings) => {
-      return { ...prevSettings, [id]: id === 'chart' ? value : parseFloat(value) }
+      return { ...prevSettings, [id]: value }
     })
   }
 
-  const { lightness, cameraX, cameraY, cameraZ, chart, modifier, impacts } = settings
+  const { lightness, cameraX, cameraY, cameraZ, chart, impacts, modifier, operation } = settings
   const series = chart ? chart.split(', ').map(Number) : [1]
 
   return (
@@ -32,7 +32,7 @@ const Umbrella = (props) => {
         <OrbitControls />
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
-          if (chart) {
+          if (impacts) {
             modifiedProps[impacts] = settings[impacts] * item * modifier
           }
           const { sides, bases, fold, thickness, height, growth, xScale, yScale } = modifiedProps
@@ -72,7 +72,7 @@ const Umbrella = (props) => {
           )
         })}
       </Canvas>
-      <Controls {...{ controls, handleInputChange }} />
+      <Controls {...{ controls, handleInputChange, currentSettings: settings }} />
     </div>
   )
 }
