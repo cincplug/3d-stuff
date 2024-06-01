@@ -31,7 +31,7 @@ const variations = {
       modifier: 1,
       impacts: 'spread',
       operation: '*',
-      chart: '7, 6, 4, 2, 1, 3, 2, 7, 6, 1, 9, 7, 4',
+      chart: '7,6,4,2,1,3,2,7,6,1,9,7,4',
     },
   },
   Umbrella: {
@@ -47,7 +47,7 @@ const variations = {
       modifier: 1,
       impacts: 'fold',
       operation: '*',
-      chart: '7, 6, 4, 2, 1, 3, 2, 7, 6, 1, 9, 7, 4',
+      chart: '7,6,4,2,1,3,2,7,6,1,9,7,4',
     },
     Spear: {
       sides: 10,
@@ -71,7 +71,7 @@ const variations = {
       modifier: 1,
       impacts: 'height',
       operation: '*',
-      chart: '7, 6, 4, 2, 1, 3, 2, 7, 6, 1, 9, 7, 4',
+      chart: '7,6,4,2,1,3,2,7,6,1,9,7,4',
     },
     Plunger: {
       sides: 10,
@@ -116,7 +116,7 @@ const variations = {
       modifier: 1,
       impacts: 'bases',
       operation: '*',
-      chart: '7, 6, 4, 2, 1, 3, 2, 7, 6, 1, 9, 7, 4',
+      chart: '7,6,4,2,1,3,2,7,6,1,9,7,4',
     },
     Amphitheater: {
       sides: 9,

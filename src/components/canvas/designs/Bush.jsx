@@ -20,7 +20,7 @@ const Bush = (props) => {
   }
 
   const { lightness, cameraX, cameraY, cameraZ, chart, impacts, modifier, operation } = settings
-  const series = chart ? chart.split(', ').map(Number) : [1]
+  const series = chart ? chart.split(',').map(Number) : [1]
 
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
