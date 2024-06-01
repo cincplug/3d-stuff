@@ -1,6 +1,9 @@
 export const createControls = (props) => {
-  const excludedSettings = ['lightness', 'cameraX', 'cameraY', 'cameraZ', 'chart', 'impacts', 'modifier', 'operation']
-  const impacts = Object.keys(props).filter((setting) => !excludedSettings.includes(setting))
+  const cameraLightSettings = ['lightness', 'cameraX', 'cameraY', 'cameraZ']
+  const chartSettings = ['chart', 'impacts', 'modifier', 'operation']
+  const nonImpactedSettings = [...cameraLightSettings, ...chartSettings]
+  const impactedSettings = Object.keys(props).filter((setting) => !nonImpactedSettings.includes(setting))
+  const impacts = impactedSettings
   const operations = ['+', '-', '*', '/', 'pow', 'sqrt', 'sin', 'cos', 'tan', 'atan', 'log', 'exp', 'abs', 'mod']
 
   const controls = { ...props }
@@ -18,5 +21,12 @@ export const createControls = (props) => {
   controls.impacts = { value: impacts }
   controls.operation = { value: operations }
 
-  return controls
+  const orderedControls = {}
+  ;[...cameraLightSettings, ...impactedSettings, ...chartSettings].forEach((control) => {
+    if (controls[control]) {
+      orderedControls[control] = controls[control]
+    }
+  })
+
+  return orderedControls
 }
