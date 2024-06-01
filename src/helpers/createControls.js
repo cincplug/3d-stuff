@@ -1,5 +1,6 @@
 export const createControls = (props) => {
-  const impacts = Object.keys(props)
+  const excludedSettings = ['lightness', 'cameraX', 'cameraY', 'cameraZ', 'chart', 'impacts', 'modifier', 'operation']
+  const impacts = Object.keys(props).filter((setting) => !excludedSettings.includes(setting))
   const operations = ['+', '-', '*', '/', '**', 'pow', 'sqrt', 'sin', 'cos', 'tan', 'atan']
 
   const controls = { ...props }
