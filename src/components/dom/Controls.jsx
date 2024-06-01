@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 const Controls = ({ controls, handleInputChange, currentSettings }) => {
   const [selectedValues, setSelectedValues] = useState(() => {
     const initialValues = {}
-    Object.keys(controls).forEach((control) => {
-      initialValues[control] = Array.isArray(controls[control].value)
-        ? currentSettings[control]
-        : controls[control].value
+    Object.keys(controls).forEach((category) => {
+      Object.keys(controls[category]).forEach((control) => {
+        initialValues[control] = Array.isArray(controls[category][control].value)
+          ? currentSettings[control]
+          : controls[category][control].value
+      })
     })
     return initialValues
   })
@@ -47,55 +49,47 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
   }
 
   return (
-    <aside className='absolute right-2 top-2 grid w-60 grid-cols-12 gap-2 bg-slate-700 p-2 text-sm text-slate-300'>
-      {Object.keys(controls).map((control, controlIndex) => {
-        const { min, max, step } = controls[control]
-        const displayValue = selectedValues[control]
-        const uiElement =
-          control === 'chart' ? (
-            <textarea
-              className='col-span-6 bg-slate-900 text-slate-300 hover:bg-black'
-              id={control}
-              value={displayValue}
-              onChange={handleTextChange}
-            />
-          ) : Array.isArray(controls[control].value) ? (
-            <select
-              className='col-span-6 bg-slate-900 text-slate-300 hover:bg-black'
-              id={control}
-              value={displayValue}
-              onChange={handleSelectChange}
-            >
-              {controls[control].value.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <>
-              <input
-                className='col-span-6'
-                id={control}
-                type='range'
-                min={min}
-                max={max}
-                step={step}
-                value={displayValue}
-                onChange={handleRangeChange}
-              />
-              <span className='col-span-2'>{displayValue}</span>
-            </>
-          )
-        return (
-          <React.Fragment key={controlIndex}>
-            <label className='col-span-4' htmlFor={control}>
-              {control}
-            </label>
-            {uiElement}
-          </React.Fragment>
-        )
-      })}
+    <aside className='absolute right-2 top-2 w-60 bg-slate-700 px-2 text-sm text-slate-300'>
+      {Object.entries(controls).map(([category]) => (
+        <fieldset key={category} className='grid grid-cols-12 gap-2 pb-2'>
+          <legend className='py-2'>{category}</legend>
+          {Object.entries(controls[category]).map(([control, controlProps], controlIndex) => {
+            const { min, max, step } = controlProps
+            const displayValue = selectedValues[control]
+            const isChart = control === 'chart'
+            const isArray = Array.isArray(controls[category][control].value)
+            const inputProps = {
+              className: 'col-span-6 bg-slate-900 text-slate-300 hover:bg-black',
+              id: control,
+              value: displayValue,
+              onChange: isChart ? handleTextChange : isArray ? handleSelectChange : handleRangeChange,
+            }
+            return (
+              <React.Fragment key={controlIndex}>
+                <label className='col-span-4' htmlFor={control}>
+                  {control}
+                </label>
+                {isChart ? (
+                  <textarea {...inputProps} />
+                ) : isArray ? (
+                  <select {...inputProps}>
+                    {controls[category][control].value.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <>
+                    <input {...inputProps} type='range' min={min} max={max} step={step} />
+                    <span className='col-span-2'>{displayValue}</span>
+                  </>
+                )}
+              </React.Fragment>
+            )
+          })}
+        </fieldset>
+      ))}
     </aside>
   )
 }

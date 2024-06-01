@@ -21,12 +21,9 @@ export const createControls = (props) => {
   controls.impacts = { value: impacts }
   controls.operation = { value: operations }
 
-  const orderedControls = {}
-  ;[...cameraLightSettings, ...impactedSettings, ...chartSettings].forEach((control) => {
-    if (controls[control]) {
-      orderedControls[control] = controls[control]
-    }
-  })
-
-  return orderedControls
+  return {
+    'Scene settings': Object.fromEntries(cameraLightSettings.map((key) => [key, controls[key]])),
+    'Shape settings': Object.fromEntries(impactedSettings.map((key) => [key, controls[key]])),
+    'Chart settings': Object.fromEntries(chartSettings.map((key) => [key, controls[key]])),
+  }
 }
