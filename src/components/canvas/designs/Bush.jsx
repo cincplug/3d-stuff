@@ -19,7 +19,7 @@ const Bush = (props) => {
     })
   }
 
-  const { lightness, cameraX, cameraY, cameraZ, chart, impacts, modifier, operation } = settings
+  const { lightness, cameraX, cameraY, cameraZ, chart, impacts, itemModifier, itemOperation } = settings
   const series = chart ? chart.split(',').map(Number) : [1]
 
   return (
@@ -29,12 +29,12 @@ const Bush = (props) => {
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (impacts) {
-            modifiedProps[impacts] = settings[impacts] * item * modifier
+            modifiedProps[impacts] = settings[impacts] * item * itemModifier
           }
           const { sides, bases, spread, growth, thickness } = modifiedProps
           const shapes = Array.from({ length: bases }, (_, i) => i + 1)
           return (
-            <group key={seriesIndex} position={[seriesIndex * modifier, 0, 0]}>
+            <group key={seriesIndex} position={[seriesIndex * itemModifier, 0, 0]}>
               {shapes.map((_shape, i) => {
                 const height = Math.sqrt(i + 1) * growth
                 const width = thickness - i / shapes.length

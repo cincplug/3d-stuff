@@ -20,7 +20,19 @@ const Umbrella = (props) => {
     })
   }
 
-  const { lightness, cameraX, cameraY, cameraZ, chart, impacts, modifier, operation } = settings
+  const {
+    lightness,
+    cameraX,
+    cameraY,
+    cameraZ,
+    chart,
+    impacts,
+    itemModifier,
+    itemOperation,
+    gapAxis,
+    gapModifier,
+    gapOperation,
+  } = settings
   const series = chart ? chart.split(',').map(Number) : [1]
 
   return (
@@ -33,12 +45,16 @@ const Umbrella = (props) => {
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (impacts) {
-            modifiedProps[impacts] = applyOperation(settings[impacts], item, operation) * modifier
+            modifiedProps[impacts] = applyOperation(settings[impacts], item, itemOperation) * itemModifier
           }
           const { sides, bases, fold, thickness, height, growth, xScale, yScale } = modifiedProps
           const shapes = Array.from({ length: bases }, (_, index) => index + 1)
+          const modifiedPosition = applyOperation(settings[impacts], seriesIndex, gapOperation) * gapModifier
           return (
-            <group key={seriesIndex} position={[seriesIndex * modifier, height / 2, 0]}>
+            <group
+              key={seriesIndex}
+              position={[gapAxis === 'x' ? modifiedPosition : 0, height / 2, gapAxis === 'z' ? modifiedPosition : 0]}
+            >
               <mesh position={[0, -height / 2, 0]}>
                 <cylinderGeometry attach='geometry' args={[thickness, thickness, height, sides, 1]} />
                 <meshPhysicalMaterial

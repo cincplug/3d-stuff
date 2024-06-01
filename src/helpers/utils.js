@@ -28,37 +28,37 @@ export const pascalToSpace = (text) => {
   return text.replace(/([A-Z])/g, ' $1')
 }
 
-export const applyOperation = (itemIndex, modifier, operation) => {
+export const applyOperation = (index, modifier, operation) => {
   switch (operation) {
     case '+':
-      return itemIndex + modifier
+      return index + modifier
     case '-':
-      return itemIndex - modifier
+      return index - modifier
     case '*':
-      return itemIndex * modifier
+      return index * modifier
     case '/':
-      return modifier !== 0 ? itemIndex / modifier : itemIndex
+      return modifier !== 0 ? index / modifier : index
     case 'pow':
-      return itemIndex >= 0 ? Math.pow(itemIndex, modifier) : itemIndex
+      return index >= 0 ? Math.pow(index, modifier) : index
     case 'sqrt':
-      return itemIndex >= 0 ? Math.sqrt(itemIndex) * modifier : itemIndex
+      return index >= 0 ? Math.sqrt(index) * modifier : index
     case 'sin':
-      return Math.sin(itemIndex / modifier)
+      return Math.sin(index / modifier)
     case 'cos':
-      return Math.cos(itemIndex / modifier)
+      return Math.cos(index / modifier)
     case 'tan':
-      return Math.tan(itemIndex / modifier)
+      return Math.tan(index / modifier)
     case 'atan':
-      return Math.atan(itemIndex / modifier)
+      return Math.atan(index / modifier)
     case 'log':
-      return itemIndex > 0 ? Math.log(itemIndex) * modifier : itemIndex
+      return index > 0 ? Math.log(index) * modifier : index
     case 'exp':
-      return Math.exp(itemIndex / modifier)
+      return Math.exp(index / modifier)
     case 'abs':
-      return Math.abs(itemIndex) * modifier
+      return Math.abs(index) * modifier
     case 'mod':
-      return modifier !== 0 ? itemIndex % modifier : itemIndex
+      return modifier !== 0 ? index % modifier : index
     default:
-      return itemIndex * modifier
+      return index * modifier
   }
 }

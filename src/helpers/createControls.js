@@ -1,10 +1,11 @@
 export const createControls = (props) => {
   const cameraLightSettings = ['lightness', 'cameraX', 'cameraY', 'cameraZ']
-  const chartSettings = ['chart', 'impacts', 'modifier', 'operation']
-  const nonImpactedSettings = [...cameraLightSettings, ...chartSettings]
-  const impactedSettings = Object.keys(props).filter((setting) => !nonImpactedSettings.includes(setting))
-  const impacts = impactedSettings
-  const operations = ['+', '-', '*', '/', 'pow', 'sqrt', 'sin', 'cos', 'tan', 'atan', 'log', 'exp', 'abs', 'mod']
+  const chartSettings = ['chart', 'impacts', 'itemModifier', 'itemOperation', 'gapAxis', 'gapModifier', 'gapOperation']
+  const nonShapeSettings = [...cameraLightSettings, ...chartSettings]
+  const shapeSettings = Object.keys(props).filter((setting) => !nonShapeSettings.includes(setting))
+  const impacts = shapeSettings
+  const itemOperations = ['+', '-', '*', '/', 'pow', 'sqrt', 'sin', 'cos', 'tan', 'atan', 'log', 'exp', 'abs', 'mod']
+  const axes = ['x', 'z']
 
   const controls = { ...props }
 
@@ -19,11 +20,13 @@ export const createControls = (props) => {
   })
 
   controls.impacts = { value: impacts }
-  controls.operation = { value: operations }
+  controls.itemOperation = { value: itemOperations }
+  controls.gapOperation = { value: itemOperations }
+  controls.gapAxis = { value: axes }
 
   return {
     'Scene settings': Object.fromEntries(cameraLightSettings.map((key) => [key, controls[key]])),
-    'Shape settings': Object.fromEntries(impactedSettings.map((key) => [key, controls[key]])),
+    'Shape settings': Object.fromEntries(shapeSettings.map((key) => [key, controls[key]])),
     'Chart settings': Object.fromEntries(chartSettings.map((key) => [key, controls[key]])),
   }
 }

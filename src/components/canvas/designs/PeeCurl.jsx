@@ -20,7 +20,7 @@ const PeeCurl = (props) => {
     })
   }
 
-  const { lightness, cameraX, cameraY, cameraZ, chart, impacts, modifier, operation } = settings
+  const { lightness, cameraX, cameraY, cameraZ, chart, impacts, itemModifier, itemOperation } = settings
   const series = chart ? chart.split(',').map(Number) : [1]
 
   return (
@@ -30,12 +30,12 @@ const PeeCurl = (props) => {
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (impacts) {
-            modifiedProps[impacts] = settings[impacts] * item * modifier
+            modifiedProps[impacts] = settings[impacts] * item * itemModifier
           }
           const { sides, bases, spread, curvature, thickness, height, growth } = modifiedProps
           const shapes = Array.from({ length: bases * 2 }, (_, index) => index + 1)
           return (
-            <group key={seriesIndex} position={[seriesIndex * modifier, seriesIndex * modifier, 0]}>
+            <group key={seriesIndex} position={[seriesIndex * itemModifier, seriesIndex * itemModifier, 0]}>
               {shapes.map((_, index) => {
                 const angle = (index * Math.PI * 2) / shapes.length
                 const radius = index ** (spread / 10)

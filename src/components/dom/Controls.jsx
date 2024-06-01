@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { pascalToSpace } from '@/helpers/utils'
 
 const Controls = ({ controls, handleInputChange, currentSettings }) => {
   const [selectedValues, setSelectedValues] = useState(() => {
@@ -49,7 +50,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
   }
 
   return (
-    <aside className='absolute right-2 top-2 w-60 bg-slate-700 px-2 text-sm text-slate-300'>
+    <aside className='absolute right-2 top-2 w-80 bg-slate-700 px-2 text-sm text-slate-300'>
       {Object.entries(controls).map(([category]) => (
         <fieldset key={category} className='grid grid-cols-12 gap-2 pb-2'>
           <legend className='py-2'>{category}</legend>
@@ -64,10 +65,11 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
               value: displayValue,
               onChange: isChart ? handleTextChange : isArray ? handleSelectChange : handleRangeChange,
             }
+            const label = pascalToSpace(control).toLowerCase()
             return (
               <React.Fragment key={controlIndex}>
                 <label className='col-span-4' htmlFor={control}>
-                  {control}
+                  {label}
                 </label>
                 {isChart ? (
                   <textarea {...inputProps} />

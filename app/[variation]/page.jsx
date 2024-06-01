@@ -15,9 +15,12 @@ const VariationPage = () => {
     cameraZ: 30,
     lightness: 15,
     chart: '1',
-    modifier: 1,
     impacts: 'yScale',
-    operation: '*',
+    itemModifier: 1,
+    itemOperation: '*',
+    gapAxis: 'x',
+    gapModifier: 1,
+    gapOperation: '*',
   }
   const [component, variationProps] =
     Object.entries(variations).find(([, vars]) => vars.hasOwnProperty(variation)) || []
