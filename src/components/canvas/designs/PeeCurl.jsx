@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import Controls from '@/components/dom/Controls'
-import { getColorFromIndex } from '@/helpers/utils'
+import { applyOperation, getColorFromIndex } from '@/helpers/utils'
 import { createControls } from '@/helpers/createControls'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
@@ -20,7 +20,19 @@ const PeeCurl = (props) => {
     })
   }
 
-  const { lightness, cameraX, cameraY, cameraZ, chart, impacts, itemModifier, itemOperation } = settings
+  const {
+    lightness,
+    cameraX,
+    cameraY,
+    cameraZ,
+    chart,
+    impacts,
+    itemModifier,
+    itemOperation,
+    gapAxis,
+    gapModifier,
+    gapOperation,
+  } = settings
   const series = chart ? chart.split(',').map(Number) : [1]
 
   return (
@@ -30,12 +42,20 @@ const PeeCurl = (props) => {
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (impacts) {
-            modifiedProps[impacts] = settings[impacts] * item * itemModifier
+            modifiedProps[impacts] = applyOperation(settings[impacts], item, itemOperation) * itemModifier
           }
           const { sides, bases, spread, curvature, thickness, height, growth } = modifiedProps
           const shapes = Array.from({ length: bases * 2 }, (_, index) => index + 1)
+          const modifiedPosition = applyOperation(settings[impacts], seriesIndex, gapOperation) * gapModifier
           return (
-            <group key={seriesIndex} position={[seriesIndex * itemModifier, seriesIndex * itemModifier, 0]}>
+            <group
+              key={seriesIndex}
+              position={[
+                gapAxis === 'x' ? modifiedPosition : 0,
+                seriesIndex * itemModifier,
+                gapAxis === 'z' ? modifiedPosition : 0,
+              ]}
+            >
               {shapes.map((_, index) => {
                 const angle = (index * Math.PI * 2) / shapes.length
                 const radius = index ** (spread / 10)

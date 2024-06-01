@@ -4,24 +4,12 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import components from '@/components/canvas/ComponentRegistry'
 import variations from '@/variations'
+import defaults from '@/variations/defaults'
 import { useParams } from 'next/navigation'
 
 const VariationPage = () => {
   const params = useParams()
   const { variation } = params
-  const defaults = {
-    cameraX: 0,
-    cameraY: 0,
-    cameraZ: 30,
-    lightness: 15,
-    chart: '1',
-    impacts: 'yScale',
-    itemModifier: 1,
-    itemOperation: '*',
-    gapAxis: 'x',
-    gapModifier: 1,
-    gapOperation: '*',
-  }
   const [component, variationProps] =
     Object.entries(variations).find(([, vars]) => vars.hasOwnProperty(variation)) || []
 
