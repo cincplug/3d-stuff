@@ -4,7 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Controls from '@/components/dom/Controls'
-import { getColorFromIndex } from '@/helpers/utils'
+import { getColorFromIndex, applyOperation } from '@/helpers/utils'
 import { createControls } from '@/helpers/createControls'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
@@ -33,7 +33,7 @@ const Umbrella = (props) => {
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (impacts) {
-            modifiedProps[impacts] = settings[impacts] * item * modifier
+            modifiedProps[impacts] = applyOperation(settings[impacts], item, operation) * modifier
           }
           const { sides, bases, fold, thickness, height, growth, xScale, yScale } = modifiedProps
           const shapes = Array.from({ length: bases }, (_, index) => index + 1)
