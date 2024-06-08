@@ -36,7 +36,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
     const { id, value } = event.target
     let newValue = value
     if (id === 'chart') {
-      newValue = value.replace(/[^0-9,.]/g, '')
+      newValue = value.replace(/[^0-9,.-]/g, '')
       newValue = newValue.replace(/\.+/g, '.')
       newValue = newValue.replace(/,+/g, ',')
     } else {

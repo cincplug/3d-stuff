@@ -8,7 +8,7 @@ const defaults = {
   itemModifier: 1,
   itemOperation: '*',
   gapAxis: 'x',
-  gapModifier: 1,
+  gapModifier: 0.1,
   gapOperation: '*',
 }
 

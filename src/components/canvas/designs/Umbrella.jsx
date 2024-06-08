@@ -39,7 +39,10 @@ const Umbrella = (props) => {
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Canvas className='size-full' color='black'>
         <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <directionalLight position={[5, 5, 5]} intensity={0.5} />
+        <directionalLight position={[-5, -5, -5]} intensity={0.5} />
+        <directionalLight position={[5, -5, 5]} intensity={0.5} />
+        <directionalLight position={[-5, 5, -5]} intensity={0.5} />
         <Environment lightness={lightness} cameraX={cameraX} cameraY={cameraY} cameraZ={cameraZ} />
         <OrbitControls />
         {series.map((item, seriesIndex) => {
