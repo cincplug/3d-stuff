@@ -2,7 +2,7 @@ const defaults = {
   cameraX: 0,
   cameraY: 0,
   cameraZ: 30,
-  lightness: 15,
+  lightness: 5,
   chart: '1',
   impacts: 'height',
   itemModifier: 1,
