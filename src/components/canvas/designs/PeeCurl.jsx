@@ -38,7 +38,7 @@ const PeeCurl = (props) => {
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Canvas className='size-full' color='black'>
-        <Environment {...{ lightness, cameraX, cameraY, cameraZ }} />
+        <Environment {...{ lightness, cameraX, cameraY, cameraZ, bgColor }} />
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (impacts) {

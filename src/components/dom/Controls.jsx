@@ -58,7 +58,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
             const { min, max, step } = controlProps
             const displayValue = selectedValues[control]
             const isChart = control === 'chart'
-            const isColor = ['colorFrom', 'colorTo'].includes(control)
+            const isColor = control.toLowerCase().includes('color')
             const isArray = Array.isArray(controls[category][control].value)
             const inputProps = {
               className: 'col-span-6 bg-slate-900 text-slate-300 hover:bg-black',

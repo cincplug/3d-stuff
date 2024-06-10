@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Controls from '@/components/dom/Controls'
 import { getColorFromIndex, applyOperation } from '@/helpers/utils'
@@ -25,6 +24,7 @@ const Umbrella = (props) => {
     cameraX,
     cameraY,
     cameraZ,
+    bgColor,
     chart,
     impacts,
     itemModifier,
@@ -38,8 +38,7 @@ const Umbrella = (props) => {
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Canvas className='size-full' color='black'>
-        <Environment lightness={lightness} cameraX={cameraX} cameraY={cameraY} cameraZ={cameraZ} />
-        <OrbitControls />
+        <Environment {...{ lightness, cameraX, cameraY, cameraZ, bgColor }} />
         {series.map((item, seriesIndex) => {
           let modifiedProps = { ...settings }
           if (impacts) {

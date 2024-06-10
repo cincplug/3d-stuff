@@ -10,6 +10,7 @@ const defaults = {
   gapAxis: 'x',
   gapModifier: 0.1,
   gapOperation: '*',
+  bgColor: '#222222',
 }
 
 export default defaults
