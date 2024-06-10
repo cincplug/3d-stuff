@@ -50,7 +50,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
   }
 
   return (
-    <aside className='absolute right-2 top-2 w-80 bg-slate-700 px-2 text-sm text-slate-300'>
+    <aside className='absolute inset-y-2 right-2 overflow-auto bg-slate-700 px-2 text-sm text-slate-300'>
       {Object.entries(controls).map(([category]) => (
         <fieldset key={category} className='grid grid-cols-12 gap-2 pb-2'>
           <legend className='py-2'>{category}</legend>
@@ -58,6 +58,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
             const { min, max, step } = controlProps
             const displayValue = selectedValues[control]
             const isChart = control === 'chart'
+            const isColor = ['colorFrom', 'colorTo'].includes(control)
             const isArray = Array.isArray(controls[category][control].value)
             const inputProps = {
               className: 'col-span-6 bg-slate-900 text-slate-300 hover:bg-black',
@@ -73,6 +74,8 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
                 </label>
                 {isChart ? (
                   <textarea {...inputProps} />
+                ) : isColor ? (
+                  <input {...inputProps} type='color' />
                 ) : isArray ? (
                   <select {...inputProps}>
                     {controls[category][control].value.map((option) => (

@@ -44,7 +44,7 @@ const PeeCurl = (props) => {
           if (impacts) {
             modifiedProps[impacts] = applyOperation(settings[impacts], item, itemOperation) * itemModifier
           }
-          const { sides, bases, spread, curvature, thickness, height, growth } = modifiedProps
+          const { sides, bases, spread, curvature, thickness, height, growth, colorFrom, colorTo } = modifiedProps
           const shapes = Array.from({ length: bases * 2 }, (_, index) => index + 1)
           const modifiedPosition = applyOperation(settings[impacts], seriesIndex, gapOperation) * gapModifier
           return (
@@ -60,7 +60,7 @@ const PeeCurl = (props) => {
                 const angle = (index * Math.PI * 2) / shapes.length
                 const radius = index ** (spread / 10)
                 const position = [radius * Math.cos(angle * curvature), 0, radius * Math.sin(angle * curvature)]
-                const color = getColorFromIndex(index, shapes.length)
+                const color = getColorFromIndex(index, shapes.length, colorFrom, colorTo)
                 const rodHeight = index * growth
 
                 return (

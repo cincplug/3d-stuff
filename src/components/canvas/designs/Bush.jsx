@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import Controls from '@/components/dom/Controls'
-import { applyOperation } from '@/helpers/utils'
+import { applyOperation, getColorFromIndex } from '@/helpers/utils'
 import { createControls } from '@/helpers/createControls'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
@@ -44,7 +44,7 @@ const Bush = (props) => {
           if (impacts) {
             modifiedProps[impacts] = applyOperation(settings[impacts], item, itemOperation) * itemModifier
           }
-          const { sides, bases, spread, growth, thickness } = modifiedProps
+          const { sides, bases, spread, growth, thickness, colorFrom, colorTo } = modifiedProps
           const shapes = Array.from({ length: bases }, (_, i) => i + 1)
           const modifiedPosition = applyOperation(settings[impacts], seriesIndex, gapOperation) * gapModifier
           return (
@@ -52,19 +52,20 @@ const Bush = (props) => {
               key={seriesIndex}
               position={[gapAxis === 'x' ? modifiedPosition : 0, 0, gapAxis === 'z' ? modifiedPosition : 0]}
             >
-              {shapes.map((_shape, i) => {
-                const height = Math.sqrt(i + 1) * growth
-                const width = thickness - i / shapes.length
-                const depth = i / shapes.length
+              {shapes.map((_shape, index) => {
+                const height = Math.sqrt(index + 1) * growth
+                const width = thickness - index / shapes.length
+                const depth = index / shapes.length
                 const position = [
-                  Math.sin(i) * spread,
-                  (i * height) / 2 / shapes.length - height / 2,
-                  Math.cos(i) * spread,
+                  Math.sin(index) * spread,
+                  (index * height) / 2 / shapes.length - height / 2,
+                  Math.cos(index) * spread,
                 ]
+                const color = getColorFromIndex(index, shapes.length, colorFrom, colorTo)
                 return (
-                  <mesh key={i} position={position}>
+                  <mesh key={index} position={position}>
                     <cylinderGeometry attach='geometry' args={[width * 2, depth, height, sides]} />
-                    <meshPhysicalMaterial attach='material' color='#336600' metalness={0.7} roughness={0.8} />
+                    <meshPhysicalMaterial attach='material' color={color} metalness={0.7} roughness={0.8} />
                   </mesh>
                 )
               })}

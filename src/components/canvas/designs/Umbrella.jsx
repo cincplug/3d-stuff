@@ -45,13 +45,13 @@ const Umbrella = (props) => {
           if (impacts) {
             modifiedProps[impacts] = applyOperation(settings[impacts], item, itemOperation) * itemModifier
           }
-          const { sides, bases, fold, thickness, height, growth, xScale, yScale } = modifiedProps
+          const { sides, bases, fold, thickness, height, growth, xScale, yScale, colorFrom, colorTo } = modifiedProps
           const shapes = Array.from({ length: bases }, (_, index) => index + 1)
           const modifiedPosition = applyOperation(settings[impacts], seriesIndex, gapOperation) * gapModifier
           return (
             <group
               key={seriesIndex}
-              position={[gapAxis === 'x' ? modifiedPosition : 0, height / 2, gapAxis === 'z' ? modifiedPosition : 0]}
+              position={[gapAxis === 'x' ? modifiedPosition : 0, 0, gapAxis === 'z' ? modifiedPosition : 0]}
             >
               <mesh position={[0, -height / 2, 0]}>
                 <cylinderGeometry attach='geometry' args={[thickness, thickness, height, sides, 1]} />
@@ -67,7 +67,7 @@ const Umbrella = (props) => {
               {shapes.map((_, index) => {
                 const scale = 1 - (index / shapes.length) * growth
                 const yOffset = height * (1 - fold) * (index / shapes.length)
-                const color = getColorFromIndex(index, shapes.length)
+                const color = getColorFromIndex(index, shapes.length, colorFrom, colorTo)
                 return (
                   <mesh key={index} position={[0, yOffset, 0]} scale={[scale, 1, scale]}>
                     <coneGeometry attach='geometry' args={[xScale, yScale, sides, 1, true]} />

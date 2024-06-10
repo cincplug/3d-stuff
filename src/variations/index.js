@@ -9,17 +9,21 @@ const variations = {
       cameraY: 20,
       chart: '7,6,7,4,6,12,25,52',
       impacts: 'sides',
+      colorFrom: '#554400',
+      colorTo: '#336600',
     },
     Cake: {
       sides: 17,
       bases: 39,
-      spread: 4.3,
+      spread: 14.3,
       growth: 1.4,
       thickness: 1,
       itemModifier: 1,
       impacts: 'spread',
       itemOperation: '/',
       chart: '7,6,7,4',
+      colorFrom: '#ee55bb',
+      colorTo: '#eedd88',
     },
     Muffin: {
       sides: 20,
@@ -31,6 +35,8 @@ const variations = {
       cameraY: 22,
       chart: '4',
       impacts: 'spread',
+      colorFrom: '#664400',
+      colorTo: '#886622',
     },
     IceCream: {
       sides: 8,
@@ -42,13 +48,15 @@ const variations = {
       impacts: 'spread',
       itemOperation: '*',
       chart: '7,6,4,2,1,3,2,7,6,1,9,7,4',
+      colorFrom: '#eecc00',
+      colorTo: '#44dd00',
     },
   },
   Umbrella: {
     Umbrella: {
       sides: 10,
       bases: 10,
-      fold: 1,
+      fold: 0.1,
       thickness: 0.5,
       height: 20,
       growth: 0.9,
@@ -58,6 +66,8 @@ const variations = {
       impacts: 'fold',
       itemOperation: '*',
       chart: '7',
+      colorFrom: '#ffcc00',
+      colorTo: '#3355dd',
     },
     Spear: {
       sides: 10,
@@ -72,6 +82,8 @@ const variations = {
       gapModifier: 2.5,
       impacts: 'growth',
       chart: '7,6,4,7,6,7,4',
+      colorFrom: '#8888aa',
+      colorTo: '#777788',
     },
     Pencil: {
       sides: 8,
@@ -98,6 +110,8 @@ const variations = {
       xScale: 4.9,
       yScale: 5,
       chart: '1',
+      colorFrom: '#121212',
+      colorTo: '#525262',
     },
     Rocket: {
       sides: 16,
@@ -110,6 +124,8 @@ const variations = {
       xScale: 1,
       yScale: 9.8,
       chart: '2,4',
+      colorFrom: '#821212',
+      colorTo: '#a25262',
     },
   },
   PeeCurl: {
@@ -122,6 +138,8 @@ const variations = {
       height: 20,
       growth: 1,
       chart: '1',
+      colorFrom: '#888899',
+      colorTo: '#9999aa',
     },
     Staircase: {
       sides: 4,
@@ -135,6 +153,8 @@ const variations = {
       impacts: 'bases',
       itemOperation: '*',
       chart: '3',
+      colorFrom: '#925262',
+      colorTo: '#a25262',
     },
     Amphitheater: {
       sides: 9,
@@ -146,6 +166,8 @@ const variations = {
       growth: 0.1,
       cameraY: 17,
       chart: '1',
+      colorFrom: '#888877',
+      colorTo: '#777766',
     },
   },
 }
