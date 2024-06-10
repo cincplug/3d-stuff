@@ -75,7 +75,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
                 {isChart ? (
                   <textarea {...inputProps} />
                 ) : isColor ? (
-                  <input {...inputProps} type='color' />
+                  <input {...inputProps} type='color' data-value={JSON.stringify(inputProps)} />
                 ) : isArray ? (
                   <select {...inputProps}>
                     {controls[category][control].value.map((option) => (

@@ -11,6 +11,7 @@ const variations = {
       impacts: 'sides',
       colorFrom: '#554400',
       colorTo: '#336600',
+      bgColor: '#4499ee',
     },
     Cake: {
       sides: 17,
@@ -22,8 +23,9 @@ const variations = {
       impacts: 'spread',
       itemOperation: '/',
       chart: '7,6,7,4',
-      colorFrom: '#ee55bb',
-      colorTo: '#eedd88',
+      colorFrom: '#ee5588',
+      colorTo: '#eebb55',
+      bgColor: '#24a6a8',
     },
     Muffin: {
       sides: 20,
@@ -37,6 +39,7 @@ const variations = {
       impacts: 'spread',
       colorFrom: '#664400',
       colorTo: '#886622',
+      bgColor: '#eecc00',
     },
     IceCream: {
       sides: 8,
@@ -49,7 +52,8 @@ const variations = {
       itemOperation: '*',
       chart: '7,6,4,2,1,3,2,7,6,1,9,7,4',
       colorFrom: '#eecc00',
-      colorTo: '#44dd00',
+      colorTo: '#884400',
+      bgColor: '#99aa44',
     },
   },
   Umbrella: {
@@ -68,11 +72,12 @@ const variations = {
       chart: '7',
       colorFrom: '#ffcc00',
       colorTo: '#3355dd',
+      bgColor: '#118833',
     },
     Spear: {
       sides: 10,
       bases: 16,
-      fold: 1.52,
+      fold: 1.22,
       thickness: 0.3,
       height: 20,
       growth: 0.5,
@@ -83,7 +88,8 @@ const variations = {
       impacts: 'growth',
       chart: '7,6,4,7,6,7,4',
       colorFrom: '#8888aa',
-      colorTo: '#777788',
+      colorTo: '#666688',
+      bgColor: '#331122',
     },
     Pencil: {
       sides: 8,
@@ -99,6 +105,7 @@ const variations = {
       itemOperation: '*',
       gapModifier: 0.5,
       chart: '1,1,1,1,1',
+      bgColor: '#335511',
     },
     Plunger: {
       sides: 10,
@@ -112,6 +119,7 @@ const variations = {
       chart: '1',
       colorFrom: '#121212',
       colorTo: '#525262',
+      bgColor: '#8899aa',
     },
     Rocket: {
       sides: 16,
@@ -126,6 +134,7 @@ const variations = {
       chart: '2,4',
       colorFrom: '#821212',
       colorTo: '#a25262',
+      bgColor: '#222222',
     },
   },
   PeeCurl: {

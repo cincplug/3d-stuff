@@ -25,6 +25,7 @@ const PeeCurl = (props) => {
     cameraX,
     cameraY,
     cameraZ,
+    bgColor,
     chart,
     impacts,
     itemModifier,

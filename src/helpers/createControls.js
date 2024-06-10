@@ -3,7 +3,7 @@ export const createControls = (props) => {
   const chartSettings = ['chart', 'impacts', 'itemModifier', 'itemOperation', 'gapAxis', 'gapModifier', 'gapOperation']
   const nonShapeSettings = [...cameraLightSettings, ...chartSettings]
   const shapeSettings = Object.keys(props).filter((setting) => !nonShapeSettings.includes(setting))
-  const impacts = shapeSettings
+  const impacts = shapeSettings.filter((setting) => !setting.includes('color'))
   const itemOperations = ['+', '-', '*', '/', 'pow', 'sqrt', 'sin', 'cos', 'tan', 'atan', 'log', 'exp', 'abs', 'mod']
   const axes = ['x', 'z']
 

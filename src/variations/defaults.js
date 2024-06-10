@@ -2,6 +2,7 @@ const defaults = {
   cameraX: 0,
   cameraY: 0,
   cameraZ: 30,
+  bgColor: '#112233',
   lightness: 5,
   chart: '1',
   impacts: 'height',
@@ -10,7 +11,6 @@ const defaults = {
   gapAxis: 'x',
   gapModifier: 0.1,
   gapOperation: '*',
-  bgColor: '#222222',
 }
 
 export default defaults

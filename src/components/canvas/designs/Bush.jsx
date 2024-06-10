@@ -25,6 +25,7 @@ const Bush = (props) => {
     cameraX,
     cameraY,
     cameraZ,
+    bgColor,
     chart,
     impacts,
     itemModifier,
