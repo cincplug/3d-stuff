@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
-import * as THREE from 'three'
-import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
-import { Color } from 'three'
+import { useEffect } from 'react'
+import { Color, Vector3, Box3 } from 'three'
 
 const Environment = ({ lightness, cameraX, cameraY, cameraZ, bgColor }) => {
   const { camera, scene } = useThree()
@@ -10,8 +9,8 @@ const Environment = ({ lightness, cameraX, cameraY, cameraZ, bgColor }) => {
   const threeColor = new Color(bgColor)
 
   useEffect(() => {
-    const box = new THREE.Box3().setFromObject(scene)
-    const center = box.getCenter(new THREE.Vector3())
+    const box = new Box3().setFromObject(scene)
+    const center = box.getCenter(new Vector3())
 
     camera.position.x = center.x
     camera.position.y = center.y

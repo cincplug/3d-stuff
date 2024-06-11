@@ -1,10 +1,10 @@
-import dynamic from 'next/dynamic'
-import React, { useState } from 'react'
-import { Canvas } from '@react-three/fiber'
-import * as THREE from 'three'
 import Controls from '@/components/dom/Controls'
-import { getColorFromIndex, applyOperation } from '@/helpers/utils'
 import { createControls } from '@/helpers/createControls'
+import { applyOperation, getColorFromIndex } from '@/helpers/utils'
+import { Canvas } from '@react-three/fiber'
+import { DoubleSide } from 'three'
+import dynamic from 'next/dynamic'
+import { useState } from 'react'
 
 const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
 
@@ -59,7 +59,7 @@ const Umbrella = (props) => {
                   color='gray'
                   metalness={0.9}
                   roughness={0.7}
-                  side={THREE.DoubleSide}
+                  side={DoubleSide}
                   transmission={0}
                 />
               </mesh>
@@ -75,7 +75,7 @@ const Umbrella = (props) => {
                       color={color}
                       metalness={0.9}
                       roughness={0.5}
-                      side={THREE.DoubleSide}
+                      side={DoubleSide}
                       transmission={0}
                     />
                   </mesh>
