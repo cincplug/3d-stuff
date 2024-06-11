@@ -50,7 +50,11 @@ const Bush = (props) => {
           return (
             <group
               key={seriesIndex}
-              position={[gapAxis === 'x' ? modifiedPosition : 0, 0, gapAxis === 'z' ? modifiedPosition : 0]}
+              position={[
+                gapAxis === 'x' ? modifiedPosition : 0,
+                gapAxis === 'y' ? modifiedPosition : 0,
+                gapAxis === 'z' ? modifiedPosition : 0,
+              ]}
             >
               {shapes.map((_shape, index) => {
                 const height = Math.sqrt(index + 1) * growth

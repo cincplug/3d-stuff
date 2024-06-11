@@ -53,7 +53,7 @@ const PeeCurl = (props) => {
               key={seriesIndex}
               position={[
                 gapAxis === 'x' ? modifiedPosition : 0,
-                seriesIndex * itemModifier,
+                gapAxis === 'y' ? modifiedPosition : seriesIndex * itemModifier,
                 gapAxis === 'z' ? modifiedPosition : 0,
               ]}
             >

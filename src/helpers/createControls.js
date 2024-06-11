@@ -5,7 +5,7 @@ export const createControls = (props) => {
   const shapeSettings = Object.keys(props).filter((setting) => !nonShapeSettings.includes(setting))
   const impacts = shapeSettings.filter((setting) => !setting.includes('color'))
   const itemOperations = ['+', '-', '*', '/', 'pow', 'sqrt', 'sin', 'cos', 'tan', 'atan', 'log', 'exp', 'abs', 'mod']
-  const axes = ['x', 'z']
+  const axes = ['x', 'y', 'z']
 
   const controls = { ...props }
 

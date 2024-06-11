@@ -50,7 +50,11 @@ const Umbrella = (props) => {
           return (
             <group
               key={seriesIndex}
-              position={[gapAxis === 'x' ? modifiedPosition : 0, 0, gapAxis === 'z' ? modifiedPosition : 0]}
+              position={[
+                gapAxis === 'x' ? modifiedPosition : 0,
+                gapAxis === 'y' ? modifiedPosition : 0,
+                gapAxis === 'z' ? modifiedPosition : 0,
+              ]}
             >
               <mesh position={[0, -height / 2, 0]}>
                 <cylinderGeometry attach='geometry' args={[thickness, thickness, height, sides, 1]} />
