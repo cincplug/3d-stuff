@@ -4,6 +4,9 @@ import '@/global.css'
 export const metadata = {
   title: 'Industrial Design',
   description: 'A little 3d showcase built with Nextjs + React-three-fiber and Threejs.',
+  icons: {
+    icon: '/icons/favicon-32x32.png',
+  },
 }
 
 export default function RootLayout({ children }) {
