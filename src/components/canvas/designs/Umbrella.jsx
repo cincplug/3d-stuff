@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { DoubleSide } from 'three'
 import { applyOperation, getColorFromIndex } from '@/helpers/utils'
 import dynamic from 'next/dynamic'
+import useAnimation from '@/templates/hooks/useAnimation' // Update the path accordingly
 
 const View = dynamic(() => import('@/components/canvas/View'), { ssr: false })
 
-const UmbrellaContent = (props) => {
+const Umbrella = (props) => {
   const {
     lightness,
     cameraX,
@@ -21,7 +22,10 @@ const UmbrellaContent = (props) => {
     gapOperation,
     ...settings
   } = props
+
   const series = chart ? chart.split(',').map(Number) : [1]
+  const meshRefs = useRef([])
+  useAnimation({ initialValue: Math.PI * 2, targetValue: 0, duration: 1, axis: gapAxis, meshRefs })
 
   return (
     <>
@@ -59,7 +63,12 @@ const UmbrellaContent = (props) => {
               const yOffset = height * (1 - fold) * (index / shapes.length)
               const color = getColorFromIndex(index, shapes.length, colorFrom, colorTo)
               return (
-                <mesh key={index} position={[0, yOffset, 0]} scale={[scale, 1, scale]}>
+                <mesh
+                  ref={(el) => (meshRefs.current[seriesIndex * shapes.length + index] = el)}
+                  key={index}
+                  position={[0, yOffset, 0]}
+                  scale={[scale, 1, scale]}
+                >
                   <coneGeometry attach='geometry' args={[xScale, yScale, sides, 1, true]} />
                   <meshPhysicalMaterial
                     attach='material'
@@ -79,4 +88,4 @@ const UmbrellaContent = (props) => {
   )
 }
 
-export default UmbrellaContent
+export default Umbrella
