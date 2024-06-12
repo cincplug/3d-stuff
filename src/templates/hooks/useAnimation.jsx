@@ -6,6 +6,9 @@ const useAnimation = ({ initialValue, targetValue, duration, axis, meshRefs }) =
   const animatedValue = useRef(initialValue)
 
   useEffect(() => {
+    setIsAnimationFinished(false)
+    animatedValue.current = initialValue
+
     const start = performance.now()
     const animate = (time) => {
       const elapsed = (time - start) / 1000
@@ -20,7 +23,7 @@ const useAnimation = ({ initialValue, targetValue, duration, axis, meshRefs }) =
       }
     }
     requestAnimationFrame(animate)
-  }, [initialValue, targetValue, duration])
+  }, [initialValue, targetValue, duration, axis])
 
   useFrame(() => {
     if (!isAnimationFinished) {

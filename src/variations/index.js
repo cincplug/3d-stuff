@@ -90,6 +90,7 @@ const variations = {
       colorFrom: '#8888aa',
       colorTo: '#666688',
       bgColor: '#331122',
+      gapAxis: 'z',
     },
     Pencil: {
       sides: 8,
