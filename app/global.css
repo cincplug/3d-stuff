@@ -16,4 +16,7 @@
     padding: 0;
     overflow: hidden;
   }
+  .scrollbar {
+    scrollbar-color: theme('colors.slate.500') theme('colors.slate.700');
+  }
 }
