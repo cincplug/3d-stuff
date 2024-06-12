@@ -3,7 +3,7 @@ import { DoubleSide } from 'three'
 import { applyOperation, getColorFromIndex } from '@/helpers/utils'
 import dynamic from 'next/dynamic'
 
-const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
+const View = dynamic(() => import('@/components/canvas/View'), { ssr: false })
 
 const UmbrellaContent = (props) => {
   const {
@@ -25,7 +25,7 @@ const UmbrellaContent = (props) => {
 
   return (
     <>
-      <Environment {...{ lightness, cameraX, cameraY, cameraZ, bgColor }} />
+      <View {...{ lightness, cameraX, cameraY, cameraZ, bgColor }} />
       {series.map((item, seriesIndex) => {
         let modifiedProps = { ...settings }
         if (impacts) {

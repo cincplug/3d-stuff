@@ -1,35 +1,38 @@
-'use client'
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
+import { useEffect, Suspense } from 'react'
+import { Color, Vector3, Box3 } from 'three'
 
-import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
-import { OrbitControls, PerspectiveCamera, View as ViewImpl } from '@react-three/drei'
-import { Three } from '@/helpers/components/Three'
+const View = ({ lightness, cameraX, cameraY, cameraZ, bgColor }) => {
+  const { camera, scene } = useThree()
+  const cameraPosition = [cameraX, cameraY, cameraZ]
+  const threeColor = new Color(bgColor)
 
-export const Common = ({ color }) => (
-  <Suspense fallback={null}>
-    {color && <color attach='background' args={[color]} />}
-    <ambientLight />
-    <pointLight position={[20, 30, 10]} intensity={3} decay={0.2} />
-    <pointLight position={[-10, -10, -10]} color='blue' decay={0.2} />
-    <PerspectiveCamera makeDefault fov={40} position={[0, 0, 6]} />
-  </Suspense>
-)
+  useEffect(() => {
+    const box = new Box3().setFromObject(scene)
+    const center = box.getCenter(new Vector3())
 
-const View = forwardRef(({ children, orbit, ...props }, ref) => {
-  const localRef = useRef(null)
-  useImperativeHandle(ref, () => localRef.current)
+    camera.position.x = center.x
+    camera.position.y = center.y
+    camera.position.z = center.z - 20
+
+    camera.lookAt(center)
+  }, [camera, scene])
 
   return (
     <>
-      <div ref={localRef} {...props} />
-      <Three>
-        <ViewImpl track={localRef}>
-          {children}
-          {orbit && <OrbitControls />}
-        </ViewImpl>
-      </Three>
+      <Suspense fallback={null}>
+        <color attach='background' args={[threeColor.r, threeColor.g, threeColor.b]} />
+        <directionalLight position={[5, 5, 5]} intensity={lightness} />
+        <directionalLight position={[-5, -5, -5]} intensity={lightness} />
+        <directionalLight position={[5, -5, 5]} intensity={lightness} />
+        <directionalLight position={[-5, 5, -5]} intensity={lightness} />
+        <ambientLight position={[0, 0, 10]} intensity={lightness} />
+        <PerspectiveCamera makeDefault fov={40} position={cameraPosition} />
+        <OrbitControls />
+      </Suspense>
     </>
   )
-})
-View.displayName = 'View'
+}
 
-export { View }
+export default View

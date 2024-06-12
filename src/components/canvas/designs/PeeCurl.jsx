@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { applyOperation, getColorFromIndex } from '@/helpers/utils'
 
-const Environment = dynamic(() => import('@/components/canvas/Environment'), { ssr: false })
+const View = dynamic(() => import('@/components/canvas/View'), { ssr: false })
 
 const PeeCurl = (props) => {
   const {
@@ -23,7 +23,7 @@ const PeeCurl = (props) => {
 
   return (
     <>
-      <Environment {...{ lightness, cameraX, cameraY, cameraZ, bgColor }} />
+      <View {...{ lightness, cameraX, cameraY, cameraZ, bgColor }} />
       {series.map((item, seriesIndex) => {
         let modifiedProps = { ...settings }
         if (impacts) {
