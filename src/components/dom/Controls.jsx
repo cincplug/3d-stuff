@@ -50,10 +50,10 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
   }
 
   return (
-    <aside className='scrollbar absolute inset-y-2 right-2 overflow-auto bg-slate-700 px-2 text-sm text-slate-300'>
+    <aside className='scrollbar absolute inset-y-2 right-2 w-72 overflow-y-auto overflow-x-hidden bg-slate-700 px-2 text-xs text-slate-300'>
       {Object.entries(controls).map(([category]) => (
         <fieldset key={category} className='grid grid-cols-12 gap-2 pb-2'>
-          <legend className='py-2'>{category}</legend>
+          <legend className='py-2 text-sm'>{category}</legend>
           {Object.entries(controls[category]).map(([control, controlProps], controlIndex) => {
             const { min, max, step } = controlProps
             const displayValue = selectedValues[control]
@@ -61,7 +61,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
             const isColor = control.toLowerCase().includes('color')
             const isArray = Array.isArray(controls[category][control].value)
             const inputProps = {
-              className: 'col-span-6 bg-slate-900 text-slate-300 hover:bg-black',
+              className: 'col-span-7 bg-slate-900 text-slate-300 hover:bg-black',
               id: control,
               value: displayValue,
               onChange: isChart ? handleTextChange : isArray ? handleSelectChange : handleRangeChange,
@@ -69,7 +69,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
             const label = pascalToSpace(control).toLowerCase()
             return (
               <React.Fragment key={controlIndex}>
-                <label className='col-span-4' htmlFor={control}>
+                <label className='col-span-4 leading-4' htmlFor={control}>
                   {label}
                 </label>
                 {isChart ? (
@@ -87,7 +87,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
                 ) : (
                   <>
                     <input {...inputProps} type='range' min={min} max={max} step={step} />
-                    <span className='col-span-2'>{displayValue}</span>
+                    <span className='col-span-1'>{displayValue}</span>
                   </>
                 )}
               </React.Fragment>
