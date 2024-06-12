@@ -6,12 +6,15 @@ const variations = {
       spread: 2,
       growth: 1.5,
       thickness: -1,
-      cameraY: 20,
-      chart: '7,6,7,4,6,12,25,52',
+      cameraY: 10,
+      cameraX: 30,
+      chart: '7,6,7,4,6',
       impacts: 'sides',
       colorFrom: '#554400',
       colorTo: '#336600',
       bgColor: '#4499ee',
+      gapAxis: 'x',
+      duration: 5,
     },
     Cake: {
       sides: 17,
@@ -26,6 +29,7 @@ const variations = {
       colorFrom: '#ee5588',
       colorTo: '#eebb55',
       bgColor: '#24a6a8',
+      duration: 3,
     },
     Muffin: {
       sides: 20,
@@ -54,6 +58,7 @@ const variations = {
       colorFrom: '#eecc00',
       colorTo: '#884400',
       bgColor: '#99aa44',
+      gapAxis: 'z',
     },
   },
   Umbrella: {

@@ -5,6 +5,7 @@ const defaults = {
   bgColor: '#112233',
   lightness: 5,
   chart: '1',
+  duration: 2,
   impacts: 'height',
   itemModifier: 1,
   itemOperation: '*',

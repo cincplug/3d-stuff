@@ -19,11 +19,12 @@ const Bush = (props) => {
     gapAxis,
     gapModifier,
     gapOperation,
+    duration,
     ...settings
   } = props
   const series = chart ? chart.split(',').map(Number) : [1]
   const meshRefs = useRef([])
-  useAnimation({ initialValue: Math.PI * 2, targetValue: 0, duration: 1, axis: gapAxis, meshRefs })
+  useAnimation({ initialValue: Math.PI * 2, targetValue: 0, duration, axis: gapAxis, meshRefs })
 
   return (
     <>

@@ -50,7 +50,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
   }
 
   return (
-    <aside className='scrollbar absolute inset-y-2 right-2 w-72 overflow-y-auto overflow-x-hidden bg-slate-700 px-2 text-xs text-slate-300'>
+    <aside className='scrollbar absolute inset-y-2 right-2 w-80 overflow-y-auto overflow-x-hidden bg-slate-700 px-2 text-xs text-slate-300'>
       {Object.entries(controls).map(([category]) => (
         <fieldset key={category} className='grid grid-cols-12 gap-2 pb-2'>
           <legend className='py-2 text-sm'>{category}</legend>
