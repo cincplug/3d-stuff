@@ -34,7 +34,20 @@ const Umbrella = (props) => {
         if (impacts) {
           modifiedProps[impacts] = applyOperation(settings[impacts], item, itemOperation) * itemModifier
         }
-        const { sides, bases, fold, thickness, height, growth, xScale, yScale, colorFrom, colorTo } = modifiedProps
+        const {
+          sides,
+          bases,
+          fold,
+          thickness,
+          height,
+          growth,
+          xScale,
+          yScale,
+          colorFrom,
+          colorTo,
+          metalness,
+          roughness,
+        } = modifiedProps
         const shapes = Array.from({ length: bases }, (_, index) => index + 1)
         const modifiedPosition = applyOperation(settings[impacts], seriesIndex, gapOperation) * gapModifier
         return (
@@ -51,8 +64,8 @@ const Umbrella = (props) => {
               <meshPhysicalMaterial
                 attach='material'
                 color='gray'
-                metalness={0.9}
-                roughness={0.7}
+                metalness={metalness}
+                roughness={roughness}
                 side={DoubleSide}
                 transmission={0}
               />
@@ -72,8 +85,8 @@ const Umbrella = (props) => {
                   <meshPhysicalMaterial
                     attach='material'
                     color={color}
-                    metalness={0.9}
-                    roughness={0.5}
+                    metalness={metalness}
+                    roughness={roughness}
                     side={DoubleSide}
                     transmission={0}
                   />

@@ -32,7 +32,8 @@ const PeeCurl = (props) => {
         if (impacts) {
           modifiedProps[impacts] = applyOperation(settings[impacts], item, itemOperation) * itemModifier
         }
-        const { sides, bases, spread, curvature, thickness, height, growth, colorFrom, colorTo } = modifiedProps
+        const { sides, bases, spread, curvature, thickness, height, growth, colorFrom, colorTo, metalness, roughness } =
+          modifiedProps
         const shapes = Array.from({ length: bases * 2 }, (_, index) => index + 1)
         const modifiedPosition = applyOperation(settings[impacts], seriesIndex, gapOperation) * gapModifier
         return (
@@ -59,7 +60,12 @@ const PeeCurl = (props) => {
                       position={[0, (growth * height) / 2, 0]}
                     >
                       <coneGeometry attach='geometry' args={[2, 1, sides]} />
-                      <meshStandardMaterial attach='material' color={color} metalness={0.9} roughness={0.5} />
+                      <meshStandardMaterial
+                        attach='material'
+                        color={color}
+                        metalness={metalness}
+                        roughness={roughness}
+                      />
                     </mesh>
                   )}
                   {index > 0 && index % 2 === 0 && (
@@ -71,7 +77,12 @@ const PeeCurl = (props) => {
                         attach='geometry'
                         args={[thickness, thickness, rodHeight + growth * height, sides]}
                       />
-                      <meshStandardMaterial attach='material' color={color} metalness={0.9} roughness={0.7} />
+                      <meshStandardMaterial
+                        attach='material'
+                        color={color}
+                        metalness={metalness}
+                        roughness={roughness}
+                      />
                     </mesh>
                   )}
                 </group>

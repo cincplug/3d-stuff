@@ -32,7 +32,7 @@ const Bush = (props) => {
         if (impacts) {
           modifiedProps[impacts] = applyOperation(settings[impacts], item, itemOperation) * itemModifier
         }
-        const { sides, bases, spread, growth, thickness, colorFrom, colorTo } = modifiedProps
+        const { sides, bases, spread, growth, thickness, colorFrom, colorTo, metalness, roughness } = modifiedProps
         const shapes = Array.from({ length: bases }, (_, i) => i + 1)
         const modifiedPosition = applyOperation(settings[impacts], seriesIndex, gapOperation) * gapModifier
         return (
@@ -61,7 +61,7 @@ const Bush = (props) => {
                   position={position}
                 >
                   <cylinderGeometry attach='geometry' args={[width * 2, depth, height, sides]} />
-                  <meshPhysicalMaterial attach='material' color={color} metalness={0.7} roughness={0.8} />
+                  <meshPhysicalMaterial attach='material' color={color} metalness={metalness} roughness={roughness} />
                 </mesh>
               )
             })}
