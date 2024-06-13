@@ -8,9 +8,7 @@ const View = dynamic(() => import('@/components/canvas/View'), { ssr: false })
 const Bush = (props) => {
   const {
     lightness,
-    cameraX,
-    cameraY,
-    cameraZ,
+    autoRotate,
     bgColor,
     chart,
     impacts,
@@ -28,7 +26,7 @@ const Bush = (props) => {
 
   return (
     <>
-      <View {...{ lightness, cameraX, cameraY, cameraZ, bgColor }} />
+      <View {...{ lightness, autoRotate, bgColor }} />
       {series.map((item, seriesIndex) => {
         let modifiedProps = { ...settings }
         if (impacts) {

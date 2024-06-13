@@ -6,9 +6,8 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
     const initialValues = {}
     Object.keys(controls).forEach((category) => {
       Object.keys(controls[category]).forEach((control) => {
-        initialValues[control] = Array.isArray(controls[category][control].value)
-          ? currentSettings[control]
-          : controls[category][control].value
+        const value = controls[category][control].value
+        initialValues[control] = Array.isArray(value) ? currentSettings[control] : value
       })
     })
     return initialValues
@@ -56,12 +55,14 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
           <legend className='py-2 text-sm'>{category}</legend>
           {Object.entries(controls[category]).map(([control, controlProps], controlIndex) => {
             const { min, max, step } = controlProps
+            const value = controls[category][control].value
             const displayValue = selectedValues[control]
             const isChart = control === 'chart'
+            const isBool = typeof value === 'boolean'
             const isColor = control.toLowerCase().includes('color')
-            const isArray = Array.isArray(controls[category][control].value)
+            const isArray = Array.isArray(value)
             const inputProps = {
-              className: 'col-span-7 bg-slate-900 text-slate-300 hover:bg-black',
+              className: 'col-span-7 justify-self-start bg-slate-900 text-slate-300 hover:bg-black',
               id: control,
               value: displayValue,
               onChange: isChart ? handleTextChange : isArray ? handleSelectChange : handleRangeChange,
@@ -74,11 +75,13 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
                 </label>
                 {isChart ? (
                   <textarea {...inputProps} />
+                ) : isBool ? (
+                  <input {...inputProps} type='checkbox' />
                 ) : isColor ? (
                   <input {...inputProps} type='color' data-value={JSON.stringify(inputProps)} />
                 ) : isArray ? (
                   <select {...inputProps}>
-                    {controls[category][control].value.map((option) => (
+                    {value.map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>

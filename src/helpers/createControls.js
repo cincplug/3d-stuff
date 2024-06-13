@@ -1,5 +1,5 @@
 export const createControls = (props) => {
-  const cameraLightSettings = ['lightness', 'cameraX', 'cameraY', 'cameraZ', 'bgColor']
+  const cameraLightSettings = ['lightness', 'autoRotate', 'bgColor']
   const chartSettings = ['chart', 'impacts', 'itemModifier', 'itemOperation', 'gapAxis', 'gapModifier', 'gapOperation']
   const nonShapeSettings = [...cameraLightSettings, ...chartSettings]
   const shapeSettings = Object.keys(props).filter((setting) => !nonShapeSettings.includes(setting))

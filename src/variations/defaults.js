@@ -1,8 +1,6 @@
 const defaults = {
-  cameraX: 0,
-  cameraY: 0,
-  cameraZ: 30,
   bgColor: '#112233',
+  autoRotate: false,
   lightness: 5,
   chart: '1',
   duration: 2,
