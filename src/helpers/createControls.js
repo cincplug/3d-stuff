@@ -1,3 +1,5 @@
+import defaults from '@/variations/defaults'
+
 export const createControls = (props) => {
   const cameraLightSettings = ['lightness', 'autoRotate', 'bgColor']
   const chartSettings = ['chart', 'impacts', 'itemModifier', 'itemOperation', 'gapAxis', 'gapModifier', 'gapOperation']
@@ -7,15 +9,16 @@ export const createControls = (props) => {
   const itemOperations = ['+', '-', '*', '/', 'pow', 'sqrt', 'sin', 'cos', 'tan', 'atan', 'log', 'exp', 'abs', 'mod']
   const axes = ['x', 'y', 'z']
 
-  const controls = { ...props }
+  const controls = {}
 
-  Object.keys(controls).forEach((setting) => {
-    const isCountable = ['sides', 'bases'].includes(setting)
+  Object.keys(props).forEach((setting) => {
+    const { value } = props[setting]
+    const { min, max, step } = defaults[setting] || {} // get min, max, step from defaults
     controls[setting] = {
-      value: controls[setting],
-      min: isCountable ? 3 : -100,
-      max: 100,
-      step: isCountable ? 1 : 0.1,
+      value,
+      min: min !== undefined ? min : -100, // use value from defaults if it exists, otherwise use fallback
+      max: max !== undefined ? max : 100, // use value from defaults if it exists, otherwise use fallback
+      step: step !== undefined ? step : 0.1, // use value from defaults if it exists, otherwise use fallback
     }
   })
 

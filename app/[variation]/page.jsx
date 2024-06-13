@@ -8,6 +8,11 @@ import defaults from '@/variations/defaults'
 import { useParams } from 'next/navigation'
 import Wrap from '@/components/canvas/Wrap'
 
+// Utility function to extract value properties from defaults
+const extractValues = (defaults) => {
+  return Object.fromEntries(Object.entries(defaults).map(([key, { value }]) => [key, value]))
+}
+
 const VariationPage = () => {
   const params = useParams()
   const { variation } = params
@@ -24,9 +29,11 @@ const VariationPage = () => {
     notFound()
   }
 
+  const initialProps = { ...extractValues(defaults), ...variationProps[variation] }
+
   return (
     <Suspense fallback={null}>
-      <Wrap ContentComponent={Component} initialProps={{ ...defaults, ...variationProps[variation] }} />
+      <Wrap ContentComponent={Component} initialProps={initialProps} />
     </Suspense>
   )
 }

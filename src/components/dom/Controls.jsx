@@ -1,36 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { pascalToSpace } from '@/helpers/utils'
 
 const Controls = ({ controls, handleInputChange, currentSettings }) => {
-  const [selectedValues, setSelectedValues] = useState(() => {
-    const initialValues = {}
-    Object.keys(controls).forEach((category) => {
-      Object.keys(controls[category]).forEach((control) => {
-        const value = controls[category][control].value
-        initialValues[control] = Array.isArray(value) ? currentSettings[control] : value
-      })
-    })
-    return initialValues
-  })
-
-  const handleSelectChange = (event) => {
-    const { id, value } = event.target
-    setSelectedValues((prevValues) => ({
-      ...prevValues,
-      [id]: value,
-    }))
-    handleInputChange(event)
-  }
-
-  const handleRangeChange = (event) => {
-    const { id, value } = event.target
-    setSelectedValues((prevValues) => ({
-      ...prevValues,
-      [id]: Number(value),
-    }))
-    handleInputChange(event)
-  }
-
   const handleTextChange = (event) => {
     const { id, value } = event.target
     let newValue = value
@@ -39,60 +10,77 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
       newValue = newValue.replace(/\.+/g, '.')
       newValue = newValue.replace(/,+/g, ',')
     } else {
-      newValue = JSON.parse(value) || prevValues[id]
+      try {
+        newValue = JSON.parse(value) || currentSettings[id]
+      } catch {
+        newValue = currentSettings[id]
+      }
     }
-    setSelectedValues((prevValues) => ({
-      ...prevValues,
-      [id]: newValue,
-    }))
-    handleInputChange(event)
+    handleInputChange({ target: { id, value: newValue } })
+  }
+
+  const getInputElement = (control, controlProps) => {
+    const { value, min, max, step } = controlProps
+    const displayValue = currentSettings[control] !== undefined ? currentSettings[control] : value
+    const isChart = control === 'chart'
+    const isBool = typeof displayValue === 'boolean'
+    const isColor = control.toLowerCase().includes('color')
+    const isArray = Array.isArray(value)
+
+    const inputProps = {
+      className: 'col-span-7 justify-self-start bg-slate-900 text-slate-300 hover:bg-black',
+      id: control,
+      value: displayValue,
+      onChange: isChart ? handleTextChange : handleInputChange,
+    }
+
+    if (isChart) {
+      return <textarea {...inputProps} />
+    } else if (isBool) {
+      return (
+        <input
+          className='col-span-7 justify-self-start bg-slate-900 text-slate-300 hover:bg-black'
+          id={control}
+          type='checkbox'
+          checked={displayValue}
+          onChange={handleInputChange}
+        />
+      )
+    } else if (isColor) {
+      return <input {...inputProps} type='color' />
+    } else if (isArray) {
+      return (
+        <select {...inputProps} value={displayValue} onChange={handleInputChange}>
+          {value.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      )
+    } else {
+      return (
+        <>
+          <input {...inputProps} type='range' min={min} max={max} step={step} />
+          <span className='col-span-1'>{displayValue}</span>
+        </>
+      )
+    }
   }
 
   return (
-    <aside className='scrollbar absolute inset-y-2 right-2 w-80 overflow-y-auto overflow-x-hidden bg-slate-700 px-2 text-xs text-slate-300'>
+    <aside className='scrollbar absolute inset-y-2 right-2 w-72 overflow-y-auto overflow-x-hidden bg-slate-700 px-2 text-xs text-slate-300'>
       {Object.entries(controls).map(([category]) => (
         <fieldset key={category} className='grid grid-cols-12 gap-2 pb-2'>
           <legend className='py-2 text-sm'>{category}</legend>
           {Object.entries(controls[category]).map(([control, controlProps], controlIndex) => {
-            const { min, max, step } = controlProps
-            const value = controls[category][control].value
-            const displayValue = selectedValues[control]
-            const isChart = control === 'chart'
-            const isBool = typeof value === 'boolean'
-            const isColor = control.toLowerCase().includes('color')
-            const isArray = Array.isArray(value)
-            const inputProps = {
-              className: 'col-span-7 justify-self-start bg-slate-900 text-slate-300 hover:bg-black',
-              id: control,
-              value: displayValue,
-              onChange: isChart ? handleTextChange : isArray ? handleSelectChange : handleRangeChange,
-            }
             const label = pascalToSpace(control).toLowerCase()
             return (
               <React.Fragment key={controlIndex}>
                 <label className='col-span-4 leading-4' htmlFor={control}>
                   {label}
                 </label>
-                {isChart ? (
-                  <textarea {...inputProps} />
-                ) : isBool ? (
-                  <input {...inputProps} type='checkbox' />
-                ) : isColor ? (
-                  <input {...inputProps} type='color' data-value={JSON.stringify(inputProps)} />
-                ) : isArray ? (
-                  <select {...inputProps}>
-                    {value.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <>
-                    <input {...inputProps} type='range' min={min} max={max} step={step} />
-                    <span className='col-span-1'>{displayValue}</span>
-                  </>
-                )}
+                {getInputElement(control, controlProps)}
               </React.Fragment>
             )
           })}
