@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import Controls from '@/components/dom/Controls'
 import { createControls } from '@/helpers/createControls'
+import dynamic from 'next/dynamic'
 
-const CanvasWrap = ({ ContentComponent, initialProps }) => {
+const Nav = dynamic(() => import('@/components/dom/Nav'), { ssr: false })
+
+const Wrap = ({ ContentComponent, initialProps }) => {
   const controls = createControls(initialProps)
   const [settings, setSettings] = useState(initialProps)
 
@@ -20,9 +23,10 @@ const CanvasWrap = ({ ContentComponent, initialProps }) => {
       <Canvas className='size-full'>
         <ContentComponent {...settings} />
       </Canvas>
+      <Nav />
       <Controls {...{ controls, handleInputChange, currentSettings: settings }} />
     </div>
   )
 }
 
-export default CanvasWrap
+export default Wrap

@@ -2,7 +2,6 @@
 
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
-const Nav = dynamic(() => import('@/components/dom/Nav'), { ssr: false })
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
 const Layout = ({ children }) => {
@@ -10,7 +9,6 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Nav />
       <div
         ref={ref}
         style={{

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import defaults from '@/variations/defaults'
 import variations from '@/variations'
-import CanvasWrap from '@/components/canvas/CanvasWrap'
+import Wrap from '@/components/canvas/Wrap'
 
 const defaultVariation = 'Muffin'
 
@@ -19,7 +19,7 @@ export default function Page() {
   return (
     <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
       <Suspense fallback={null}>
-        <CanvasWrap
+        <Wrap
           ContentComponent={DefaultComponent}
           initialProps={{ ...defaults, ...defaultVariationProps[defaultVariation] }}
         />

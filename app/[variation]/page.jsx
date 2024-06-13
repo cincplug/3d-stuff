@@ -6,7 +6,7 @@ import components from '@/components/canvas/ComponentRegistry'
 import variations from '@/variations'
 import defaults from '@/variations/defaults'
 import { useParams } from 'next/navigation'
-import CanvasWrap from '@/components/canvas/CanvasWrap'
+import Wrap from '@/components/canvas/Wrap'
 
 const VariationPage = () => {
   const params = useParams()
@@ -25,11 +25,9 @@ const VariationPage = () => {
   }
 
   return (
-    <div className='mx-auto flex size-full flex-col flex-wrap items-center bg-black'>
-      <Suspense fallback={null}>
-        <CanvasWrap ContentComponent={Component} initialProps={{ ...defaults, ...variationProps[variation] }} />
-      </Suspense>
-    </div>
+    <Suspense fallback={null}>
+      <Wrap ContentComponent={Component} initialProps={{ ...defaults, ...variationProps[variation] }} />
+    </Suspense>
   )
 }
 
