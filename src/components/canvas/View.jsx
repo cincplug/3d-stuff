@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber'
 import { useEffect, Suspense } from 'react'
 import { Color, Vector3, Box3 } from 'three'
 
-const View = ({ lightness, bgColor, autoRotate }) => {
+const View = ({ lightness, bgColor, autoRotate, isPreview }) => {
   const { camera, scene } = useThree()
   const threeColor = new Color(bgColor)
 
@@ -15,7 +15,7 @@ const View = ({ lightness, bgColor, autoRotate }) => {
     camera.position.y = center.y + 5
     camera.position.z = center.z - 20
 
-    // camera.lookAt(center)
+    camera.lookAt(center)
   }, [camera, scene])
 
   return (
@@ -28,7 +28,7 @@ const View = ({ lightness, bgColor, autoRotate }) => {
         <directionalLight position={[-5, 5, -5]} intensity={lightness} />
         <ambientLight position={[0, 0, 10]} intensity={lightness} />
         <PerspectiveCamera makeDefault fov={40} />
-        <OrbitControls autoRotate={autoRotate} />
+        {!isPreview && <OrbitControls autoRotate={autoRotate} />}
       </Suspense>
     </>
   )

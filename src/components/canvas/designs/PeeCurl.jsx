@@ -18,6 +18,7 @@ const PeeCurl = (props) => {
     gapModifier,
     gapOperation,
     duration,
+    isPreview,
     ...settings
   } = props
   const series = chart ? chart.split(',').map(Number) : [1]
@@ -26,7 +27,7 @@ const PeeCurl = (props) => {
 
   return (
     <>
-      <View {...{ lightness, autoRotate, bgColor }} />
+      <View {...{ lightness, autoRotate, bgColor, isPreview }} />
       {series.map((item, seriesIndex) => {
         let modifiedProps = { ...settings }
         if (impacts) {

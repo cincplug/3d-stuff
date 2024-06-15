@@ -18,7 +18,7 @@ const variations = {
       colorTo: '#336600',
     },
     Fountain: {
-      bgColor: '#050629',
+      bgColor: '#151649',
       lightness: 5,
       metalness: '0.66',
       roughness: '0.55',
@@ -41,10 +41,10 @@ const variations = {
     PalmTree: {
       bgColor: '#75d1ff',
       autoRotate: false,
-      lightness: 5,
-      metalness: '0.66',
+      lightness: 3,
+      metalness: '0.26',
       roughness: '0.55',
-      chart: '1,2,4,8,16,32',
+      chart: '1,2,4,8,16',
       bases: 25,
       sides: 27,
       duration: '2.8',
