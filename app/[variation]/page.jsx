@@ -8,7 +8,6 @@ import defaults from '@/variations/defaults'
 import { useParams } from 'next/navigation'
 import Wrap from '@/components/canvas/Wrap'
 
-// Utility function to extract value properties from defaults
 const extractValues = (defaults) => {
   return Object.fromEntries(Object.entries(defaults).map(([key, { value }]) => [key, value]))
 }
