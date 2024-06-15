@@ -15,7 +15,7 @@ const Nav = ({ currentPath }) => {
               <li key={variation}>
                 <Link
                   href={`/${variation}`}
-                  className={`text-slate-300 hover:text-slate-100 ${isActive ? 'text-yellow-300' : ''}`}
+                  className={`text-slate-300 hover:text-yellow-300 ${isActive ? 'text-yellow-300' : ''}`}
                 >
                   {pascalToSpace(variation)}
                 </Link>

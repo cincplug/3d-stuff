@@ -28,7 +28,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
     const isArray = Array.isArray(value)
 
     const inputProps = {
-      className: `col-span-6 justify-self-start bg-slate-900 text-slate-300 hover:bg-black ${!isBool && !isColor ? 'w-full' : ''} ${isChart ? 'h-6 p-1' : ''}`,
+      className: `col-span-6 justify-self-start bg-slate-900 text-slate-300 hover:bg-black ${!isBool && !isColor ? 'w-full' : ''}`,
       id: control,
       value: displayValue,
       onChange: isChart ? handleTextChange : handleInputChange,

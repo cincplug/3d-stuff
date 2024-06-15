@@ -17,10 +17,19 @@ export default function Page() {
     <div className='mx-auto flex size-full flex-col flex-wrap items-center overflow-y-auto overflow-x-hidden bg-black'>
       <Suspense fallback={null}>
         <div className='grid w-screen grid-cols-3 gap-6 p-6'>
-          <header className='flex flex-col items-center justify-center text-sm text-white'>
-            <h1 className='text-base'>Data visualization and industrial design</h1>
-            <p>using React Three Fiber</p>
-            <p>by Luka Činč Stanisavljević</p>
+          <header className='flex flex-col items-center justify-center text-center text-sm text-white'>
+            <h1 className='px-4 text-base'>Data visualization and industrial design</h1>
+            <p>
+              Joint prototype made with{' '}
+              <a href='https://www.npmjs.com/package/@react-three/fiber' target='_blank' rel='noopener noreferrer'>
+                RTF
+              </a>
+              <br />
+              by{' '}
+              <a href='https://cincplug.com/' target='_blank' rel='noopener noreferrer'>
+                Luka Činč Stanisavljević
+              </a>
+            </p>
           </header>
           {variationKeys.map((variation, index) => {
             const [component, variationProps] =

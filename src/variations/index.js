@@ -135,7 +135,7 @@ const variations = {
       itemModifier: 1,
       impacts: 'fold',
       itemOperation: '*',
-      chart: '7,6,4,2,1,3,10,12,8,5,9,11',
+      chart: '7,6,4,2,1,3,10,12',
       colorFrom: '#3355dd',
       colorTo: '#ffcc00',
       bgColor: '#118833',
