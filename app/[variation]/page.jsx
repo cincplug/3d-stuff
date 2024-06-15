@@ -7,6 +7,7 @@ import variations from '@/variations'
 import defaults from '@/variations/defaults'
 import { useParams } from 'next/navigation'
 import Wrap from '@/components/canvas/Wrap'
+import Nav from '@/components/dom/Nav'
 
 const extractValues = (defaults) => {
   return Object.fromEntries(Object.entries(defaults).map(([key, { value }]) => [key, value]))
@@ -32,6 +33,7 @@ const VariationPage = () => {
 
   return (
     <Suspense fallback={null}>
+      <Nav currentPath={`/${variation}`} />
       <Wrap ContentComponent={Component} initialProps={initialProps} />
     </Suspense>
   )
