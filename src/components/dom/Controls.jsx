@@ -19,6 +19,11 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
     handleInputChange({ target: { id, value: newValue } })
   }
 
+  const handleCheckboxChange = (event) => {
+    const { id, checked } = event.target
+    handleInputChange({ target: { id, value: checked } })
+  }
+
   const getInputElement = (control, controlProps) => {
     const { value, min, max, step } = controlProps
     const displayValue = currentSettings[control] !== undefined ? currentSettings[control] : value
@@ -37,7 +42,9 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
     if (isChart) {
       return <textarea {...inputProps} />
     } else if (isBool) {
-      return <input {...inputProps} id={control} type='checkbox' checked={displayValue} onChange={handleInputChange} />
+      return (
+        <input {...inputProps} id={control} type='checkbox' checked={displayValue} onChange={handleCheckboxChange} />
+      )
     } else if (isColor) {
       return <input {...inputProps} type='color' />
     } else if (isArray) {
