@@ -33,7 +33,7 @@ export default function Page() {
                 className='flex h-56 flex-col gap-1 text-white hover:brightness-125'
                 href={`/${variation}`}
               >
-                <Canvas>
+                <Canvas style={{ background: variationProps[variation].bgColor }}>
                   <Component {...initialProps} isPreview />
                 </Canvas>
                 {pascalToSpace(variation)}
