@@ -28,7 +28,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
     const isArray = Array.isArray(value)
 
     const inputProps = {
-      className: 'col-span-7 justify-self-start bg-slate-900 text-slate-300 hover:bg-black',
+      className: `col-span-6 justify-self-start bg-slate-900 text-slate-300 hover:bg-black ${!isBool && !isColor ? 'w-full' : ''} ${isChart ? 'h-6 p-1' : ''}`,
       id: control,
       value: displayValue,
       onChange: isChart ? handleTextChange : handleInputChange,
@@ -37,15 +37,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
     if (isChart) {
       return <textarea {...inputProps} />
     } else if (isBool) {
-      return (
-        <input
-          className='col-span-7 justify-self-start bg-slate-900 text-slate-300 hover:bg-black'
-          id={control}
-          type='checkbox'
-          checked={displayValue}
-          onChange={handleInputChange}
-        />
-      )
+      return <input {...inputProps} id={control} type='checkbox' checked={displayValue} onChange={handleInputChange} />
     } else if (isColor) {
       return <input {...inputProps} type='color' />
     } else if (isArray) {
@@ -77,7 +69,7 @@ const Controls = ({ controls, handleInputChange, currentSettings }) => {
             const label = pascalToSpace(control).toLowerCase()
             return (
               <React.Fragment key={controlIndex}>
-                <label className='col-span-4 leading-4' htmlFor={control}>
+                <label className='col-span-5 leading-4' htmlFor={control}>
                   {label}
                 </label>
                 {getInputElement(control, controlProps)}
