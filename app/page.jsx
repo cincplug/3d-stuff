@@ -17,19 +17,8 @@ export default function Page() {
     <div className='mx-auto flex size-full flex-col flex-wrap items-center overflow-y-auto overflow-x-hidden bg-black'>
       <Suspense fallback={null}>
         <div className='grid w-screen grid-cols-3 gap-6 p-6'>
-          <header className='flex flex-col items-center justify-center text-center text-sm text-white'>
-            <h1 className='px-4 text-base'>Data visualization and industrial design</h1>
-            <p>
-              Joint prototype made with{' '}
-              <a href='https://www.npmjs.com/package/@react-three/fiber' target='_blank' rel='noopener noreferrer'>
-                RTF
-              </a>
-              <br />
-              by{' '}
-              <a href='https://cincplug.com/' target='_blank' rel='noopener noreferrer'>
-                Luka Činč Stanisavljević
-              </a>
-            </p>
+          <header className='flex flex-col items-center justify-center text-center text-sm text-slate-200'>
+            <h1 className='px-4 text-base'>Data visualization using tools of industrial design</h1>
           </header>
           {variationKeys.map((variation, index) => {
             const [component, variationProps] =
@@ -39,7 +28,7 @@ export default function Page() {
             return (
               <Link
                 key={index}
-                className='flex h-56 flex-col gap-1 text-white hover:brightness-125'
+                className='flex h-56 flex-col gap-1 text-slate-200 hover:brightness-125'
                 href={`/${variation}`}
               >
                 <Canvas style={{ background: variationProps[variation].bgColor }}>
@@ -49,6 +38,30 @@ export default function Page() {
               </Link>
             )
           })}
+          <footer className='col-span-3 mt-3 text-center text-xs text-slate-400'>
+            <p>
+              Designs by{' '}
+              <a
+                className='text-slate-200'
+                href='https://cincplug.com/'
+                title='Luka Činč Stanisavljević'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                LČS
+              </a>{' '}
+              using{' '}
+              <a
+                className='text-slate-200'
+                href='https://www.npmjs.com/package/@react-three/fiber'
+                title='React Three Fiber'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                RTF
+              </a>
+            </p>
+          </footer>
         </div>
       </Suspense>
     </div>
