@@ -17,7 +17,7 @@ const Nav = ({ currentPath }) => {
                   href={`/${variation}`}
                   className={`text-slate-300 hover:text-yellow-300 ${isActive ? 'text-yellow-300' : ''}`}
                 >
-                  {pascalToSpace(variation)}
+                  {pascalToSpace(variation)} Chart
                 </Link>
               </li>
             )

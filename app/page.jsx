@@ -17,8 +17,18 @@ export default function Page() {
     <div className='mx-auto flex size-full flex-col flex-wrap items-center overflow-y-auto overflow-x-hidden bg-black'>
       <Suspense fallback={null}>
         <div className='grid w-screen grid-cols-3 gap-6 p-6'>
-          <header className='flex flex-col items-center justify-center text-center text-sm text-slate-200'>
-            <h1 className='px-4 text-base'>Data visualization using tools of industrial design</h1>
+          <header className='flex flex-col justify-center text-sm text-slate-200'>
+            <h1 className='mb-4 text-base'>Industrially Designed Charts</h1>
+            <ul className='text-left list-disc list-inside'>
+              <li>They leverage innovation</li>
+              <li>They unleash potentials</li>
+              <li>They are data-driven</li>
+              <li>They strive for user-centricity</li>
+              <li>Last but not least, they lorem ipsum</li>
+              <li>
+                Actually, in third person it's <em>lorem ipsa</em>
+              </li>
+            </ul>
           </header>
           {variationKeys.map((variation, index) => {
             const [component, variationProps] =
@@ -34,7 +44,7 @@ export default function Page() {
                 <Canvas style={{ background: variationProps[variation].bgColor }}>
                   <Component {...initialProps} isPreview />
                 </Canvas>
-                {pascalToSpace(variation)}
+                {pascalToSpace(variation)} Chart
               </Link>
             )
           })}
